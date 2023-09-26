@@ -40,7 +40,22 @@ git clone SSH-адрес_вашего_форка
 
 Команда клонирует репозиторий на ваш компьютер и подготовит всё необходимое для старта работы.
 
-#### 4. Начинайте обучение!
+#### 4. Endpoints
+
+```ts
+const BASE_URL = 'https://13.design.pages.academy/wtw';
+
+export enum APIRoute {
+  Movies = '/films',
+  Login = '/login',
+  Logout = '/logout',
+  Comment = '/comments',
+  Promo = '/promo',
+  Favorites = '/favorite',
+}
+```
+
+#### 5. Начинайте обучение!
 
 ---
 
