@@ -1,4 +1,3 @@
-import { FilmPage } from '../../pages/film-page/film-page';
 import { MainPage, TMockFilm } from '../../pages/main-page/main-page';
 
 type TAppProps = {
@@ -8,7 +7,7 @@ type TAppProps = {
 const App = ({ mockFilms }: TAppProps) => (
   <>
     <MainPage films={mockFilms} />
-    <FilmPage />
+    {/* <FilmPage /> */}
   </>
 );
 
