@@ -1,7 +1,7 @@
 import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { GenresFilter } from '../../components/genres-filter/genres-filter';
-import { HeroFilmCard } from '../../components/hero-film-card/hero-film-card';
+import { MainFilmCard } from '../../components/main-film-card/main-film-card';
 
 export type TMockFilm = {
   id: string;
@@ -11,9 +11,9 @@ type TMainProps = {
   films: TMockFilm[];
 };
 
-const Main = ({ films = [] }: TMainProps) => (
+const MainPage = ({ films = [] }: TMainProps) => (
   <>
-    <HeroFilmCard />
+    <MainFilmCard />
 
     <div className="page-content">
       <section className="catalog">
@@ -39,4 +39,4 @@ const Main = ({ films = [] }: TMainProps) => (
   </>
 );
 
-export { Main };
+export { MainPage };

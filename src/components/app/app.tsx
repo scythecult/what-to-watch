@@ -1,9 +1,15 @@
-import { Main, TMockFilm } from '../../pages/main/main';
+import { FilmPage } from '../../pages/film-page/film-page';
+import { MainPage, TMockFilm } from '../../pages/main-page/main-page';
 
 type TAppProps = {
   mockFilms: TMockFilm[];
 };
 
-const App = ({ mockFilms }: TAppProps) => <Main films={mockFilms} />;
+const App = ({ mockFilms }: TAppProps) => (
+  <>
+    <MainPage films={mockFilms} />
+    <FilmPage />
+  </>
+);
 
 export { App };
