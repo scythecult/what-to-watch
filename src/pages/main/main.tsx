@@ -3,14 +3,15 @@ import { Footer } from '../../components/footer/footer';
 import { GenresFilter } from '../../components/genres-filter/genres-filter';
 import { HeroFilmCard } from '../../components/hero-film-card/hero-film-card';
 
-const FILMS_COUNT = 20;
-const mockFilms = Array.from({ length: FILMS_COUNT })
-  .fill('')
-  .map(() => ({
-    id: crypto.randomUUID(),
-  }));
+export type TMockFilm = {
+  id: string;
+};
 
-const Main = () => (
+type TMainProps = {
+  films: TMockFilm[];
+};
+
+const Main = ({ films = [] }: TMainProps) => (
   <>
     <HeroFilmCard />
 
@@ -21,7 +22,7 @@ const Main = () => (
         <GenresFilter />
 
         <div className="catalog__films-list">
-          {mockFilms.map((element) => (
+          {films.map((element) => (
             <FilmCard key={element.id} />
           ))}
         </div>
