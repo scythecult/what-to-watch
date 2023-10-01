@@ -1,4 +1,3 @@
-import { FilmCard } from '../../components/film-card/film-card';
 import { FilmDescription } from '../../components/film-description/film-description';
 import { FilmDetails } from '../../components/film-details/film-details';
 import { FilmOverview } from '../../components/film-overview/film-overview';
@@ -7,67 +6,66 @@ import { FilmTabs } from '../../components/film-tabs/film-tabs';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo';
+import { SimiliarFilms } from '../../components/similiar-films/similiar-films';
 import { UserNav } from '../../components/user-nav/user-nav';
+import { TFilm, TFilmDetails } from '../../types';
 
-const FilmPage = () => (
-  <>
-    <section className="film-card film-card--full">
-      <div className="film-card__hero">
-        <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
-        </div>
+type TFilmPageProps = {
+  filmDetails: TFilmDetails;
+  similiarFilms: TFilm[];
+};
 
-        <h1 className="visually-hidden">WTW</h1>
+const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
+  const { name, backgroundImage, backgroundColor, posterImage } = filmDetails;
 
-        <Header className="film-card__head">
-          <Logo />
-          <UserNav />
-        </Header>
-
-        <div className="film-card__wrap">
-          <FilmDescription />
-        </div>
-      </div>
-
-      <div className="film-card__wrap film-card__translate-top">
-        <div className="film-card__info">
-          <div className="film-card__poster film-card__poster--big">
-            <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
-              width="218"
-              height="327"
-            />
+  return (
+    <>
+      <section
+        className="film-card film-card--full"
+        style={{ backgroundColor: `${backgroundColor}` }}
+      >
+        <div className="film-card__hero">
+          <div className="film-card__bg">
+            <img src={backgroundImage} alt={name} />
           </div>
 
-          <div className="film-card__desc">
-            <FilmTabs />
+          <h1 className="visually-hidden">WTW</h1>
 
-            <FilmOverview />
+          <Header className="film-card__head">
+            <Logo />
+            <UserNav />
+          </Header>
 
-            <FilmDetails />
-
-            <FilmReviews />
+          <div className="film-card__wrap">
+            <FilmDescription {...filmDetails} />
           </div>
         </div>
-      </div>
-    </section>
 
-    <div className="page-content">
-      <section className="catalog catalog--like-this">
-        <h2 className="catalog__title">More like this</h2>
+        <div className="film-card__wrap film-card__translate-top">
+          <div className="film-card__info">
+            <div className="film-card__poster film-card__poster--big">
+              <img src={posterImage} alt={name} width="218" height="327" />
+            </div>
 
-        <div className="catalog__films-list">
-          <FilmCard />
+            <div className="film-card__desc">
+              <FilmTabs />
+
+              <FilmOverview />
+
+              <FilmDetails />
+
+              <FilmReviews />
+            </div>
+          </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
-  </>
-);
+      <div className="page-content">
+        <SimiliarFilms similiarFilms={similiarFilms} />
+        <Footer />
+      </div>
+    </>
+  );
+};
 
 export { FilmPage };

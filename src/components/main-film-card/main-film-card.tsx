@@ -24,7 +24,7 @@ const MainFilmCard = (filmData: TMainFilmCardProps) => {
 
       <div className="film-card__wrap">
         <div className="film-card__info">
-          <FilmDescription {...filmData} />
+          <FilmDescription {...filmData} withPoster />
         </div>
       </div>
     </section>

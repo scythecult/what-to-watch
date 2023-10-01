@@ -4,8 +4,13 @@ import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo';
 import { UserNav } from '../../components/user-nav/user-nav';
+import { TFilm } from '../../types';
 
-const FavoritesPage = () => (
+type TFavoritesPageProps = {
+  favoriteFilms?: TFilm[];
+};
+
+const FavoritesPage = ({ favoriteFilms }: TFavoritesPageProps) => (
   <div className="user-page">
     <Header className="user-page__head">
       <Logo />
@@ -17,7 +22,13 @@ const FavoritesPage = () => (
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__films-list">
-        <FilmCard />
+        {/* temporary */}
+        {!!favoriteFilms?.length &&
+          favoriteFilms.map((favoriteFilm) => {
+            const { id } = favoriteFilm;
+
+            return <FilmCard key={id} {...favoriteFilm} />;
+          })}
       </div>
     </section>
 
