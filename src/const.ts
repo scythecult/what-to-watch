@@ -1,0 +1,3 @@
+const MAX_RATING_STAR_COUNT = 10;
+
+export { MAX_RATING_STAR_COUNT };
