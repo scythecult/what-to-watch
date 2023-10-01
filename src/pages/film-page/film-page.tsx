@@ -6,6 +6,8 @@ import { FilmReviews } from '../../components/film-reviews/film-reviews';
 import { FilmTabs } from '../../components/film-tabs/film-tabs';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
+import { Logo } from '../../components/logo';
+import { UserNav } from '../../components/user-nav/user-nav';
 
 const FilmPage = () => (
   <>
@@ -20,7 +22,10 @@ const FilmPage = () => (
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header />
+        <Header className="film-card__head">
+          <Logo />
+          <UserNav />
+        </Header>
 
         <div className="film-card__wrap">
           <FilmDescription />

@@ -1,20 +1,11 @@
-import { Logo } from '../logo';
+import { PropsWithChildren } from 'react';
 
-const Header = () => (
-  <header className="page-header film-card__head">
-    <Logo />
+type THeaderProps = PropsWithChildren<{
+  className?: string;
+}>;
 
-    <ul className="user-block">
-      <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-        </div>
-      </li>
-      <li className="user-block__item">
-        <a className="user-block__link">Sign out</a>
-      </li>
-    </ul>
-  </header>
+const Header = ({ className = '', children }: THeaderProps) => (
+  <header className={`page-header ${className}`}>{children}</header>
 );
 
 export { Header };

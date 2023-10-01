@@ -1,5 +1,7 @@
 import { Header } from '../header/header';
 import { FilmDescription } from '../film-description/film-description';
+import { Logo } from '../logo';
+import { UserNav } from '../user-nav/user-nav';
 
 const MainFilmCard = () => (
   <section className="film-card">
@@ -12,7 +14,10 @@ const MainFilmCard = () => (
 
     <h1 className="visually-hidden">WTW</h1>
 
-    <Header />
+    <Header className="film-card__head">
+      <Logo />
+      <UserNav />
+    </Header>
 
     <div className="film-card__wrap">
       <div className="film-card__info">
