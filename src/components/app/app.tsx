@@ -1,10 +1,10 @@
-// import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
+import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
 import { FilmPage } from '../../pages/film-page/film-page';
 // import { LoginPage } from '../../pages/login-page/login-page';
-// import { MainPage } from '../../pages/main-page/main-page';
+import { MainPage } from '../../pages/main-page/main-page';
 import { TFilm, TFilmDetails, TPromoFilm } from '../../types';
 // import { PlayerPage } from '../../pages/player-page/player-page';
-// import { ReviewPage } from '../../pages/review-page/review-page';
+import { ReviewPage } from '../../pages/review-page/review-page';
 
 type TAppProps = {
   mockFilms: TFilm[];
@@ -22,10 +22,10 @@ const App = ({
   <>
     {/* <MainPage films={mockFilms} promoFilm={mockPromoFilm} /> */}
     {/* <LoginPage /> */}
-    {/* <FavoritesPage /> */}
+    {/* <FavoritesPage favoriteFilms={mockFilms} /> */}
     {/* <PlayerPage /> */}
-    <FilmPage filmDetails={mockFilmDetails} similiarFilms={mockSimiliarFilms} />
-    {/* <ReviewPage /> */}
+    {/* <FilmPage filmDetails={mockFilmDetails} similiarFilms={mockSimiliarFilms} /> */}
+    <ReviewPage />
   </>
 );
 

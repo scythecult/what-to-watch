@@ -3,6 +3,7 @@ import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo';
+import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { TFilm } from '../../types';
 
@@ -10,30 +11,35 @@ type TFavoritesPageProps = {
   favoriteFilms?: TFilm[];
 };
 
-const FavoritesPage = ({ favoriteFilms }: TFavoritesPageProps) => (
-  <div className="user-page">
-    <Header className="user-page__head">
-      <Logo />
-      <FavoritesCount count={11} />
-      <UserNav />
-    </Header>
+const FavoritesPage = ({ favoriteFilms }: TFavoritesPageProps) => {
+  const shouldRenderFavoriteFilms = !!favoriteFilms;
 
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  return (
+    <div className="user-page">
+      <Header className="user-page__head">
+        <Logo />
+        <FavoritesCount count={11} />
+        <UserNav />
+      </Header>
 
-      <div className="catalog__films-list">
-        {/* temporary */}
-        {!!favoriteFilms?.length &&
-          favoriteFilms.map((favoriteFilm) => {
-            const { id } = favoriteFilm;
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            return <FilmCard key={id} {...favoriteFilm} />;
-          })}
-      </div>
-    </section>
+        <div className="catalog__films-list">
+          {!shouldRenderFavoriteFilms && <Message />}
 
-    <Footer />
-  </div>
-);
+          {shouldRenderFavoriteFilms &&
+            favoriteFilms.map((favoriteFilm) => {
+              const { id } = favoriteFilm;
+
+              return <FilmCard key={id} {...favoriteFilm} />;
+            })}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
 
 export { FavoritesPage };
