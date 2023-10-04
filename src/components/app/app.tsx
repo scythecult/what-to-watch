@@ -1,10 +1,13 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
 import { FilmPage } from '../../pages/film-page/film-page';
-// import { LoginPage } from '../../pages/login-page/login-page';
+import { LoginPage } from '../../pages/login-page/login-page';
 import { MainPage } from '../../pages/main-page/main-page';
 import { TFilm, TFilmDetails, TPromoFilm } from '../../types';
-// import { PlayerPage } from '../../pages/player-page/player-page';
+import { PlayerPage } from '../../pages/player-page/player-page';
 import { ReviewPage } from '../../pages/review-page/review-page';
+import { AppRoute } from '../../const';
+import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 
 type TAppProps = {
   mockFilms: TFilm[];
@@ -19,14 +22,32 @@ const App = ({
   mockFilmDetails,
   mockSimiliarFilms,
 }: TAppProps) => (
-  <>
-    {/* <MainPage films={mockFilms} promoFilm={mockPromoFilm} /> */}
-    {/* <LoginPage /> */}
-    {/* <FavoritesPage favoriteFilms={mockFilms} /> */}
-    {/* <PlayerPage /> */}
-    {/* <FilmPage filmDetails={mockFilmDetails} similiarFilms={mockSimiliarFilms} /> */}
-    <ReviewPage />
-  </>
+  <BrowserRouter>
+    <Routes>
+      <Route
+        path={AppRoute.Root}
+        index
+        element={<MainPage films={mockFilms} promoFilm={mockPromoFilm} />}
+      />
+      <Route path={AppRoute.Login} element={<LoginPage />} />
+      <Route
+        path={AppRoute.Favorite}
+        element={<FavoritesPage favoriteFilms={mockFilms} />}
+      />
+      <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
+      <Route
+        path={AppRoute.Film}
+        element={
+          <FilmPage
+            filmDetails={mockFilmDetails}
+            similiarFilms={mockSimiliarFilms}
+          />
+        }
+      />
+      <Route path={AppRoute.Review} element={<ReviewPage />} />
+      <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 export { App };
