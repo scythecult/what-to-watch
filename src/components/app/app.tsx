@@ -8,6 +8,7 @@ import { PlayerPage } from '../../pages/player-page/player-page';
 import { ReviewPage } from '../../pages/review-page/review-page';
 import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
+import { PrivateRoute } from '../private-route/private-route';
 
 type TAppProps = {
   mockFilms: TFilm[];
@@ -32,7 +33,11 @@ const App = ({
       <Route path={AppRoute.Login} element={<LoginPage />} />
       <Route
         path={AppRoute.Favorite}
-        element={<FavoritesPage favoriteFilms={mockFilms} />}
+        element={
+          <PrivateRoute>
+            <FavoritesPage favoriteFilms={mockFilms} />
+          </PrivateRoute>
+        }
       />
       <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
       <Route
