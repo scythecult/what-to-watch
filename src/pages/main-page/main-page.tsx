@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { GenresFilter } from '../../components/genres-filter/genres-filter';
@@ -14,6 +15,9 @@ type TMainProps = {
 
 const MainPage = ({ films = [], promoFilm }: TMainProps) => (
   <>
+    <Helmet>
+      <title>Что посмотреть</title>
+    </Helmet>
     <MainFilmCard {...promoFilm} />
 
     <div className="page-content">

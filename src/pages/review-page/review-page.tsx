@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Breadcrumbs } from '../../components/breadcrumbs/breadcrumbs';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo/logo';
@@ -7,6 +8,9 @@ import { UserNav } from '../../components/user-nav/user-nav';
 
 const ReviewPage = () => (
   <section className="film-card film-card--full">
+    <Helmet>
+      <title>Напишите отзыв</title>
+    </Helmet>
     <div className="film-card__header">
       <div className="film-card__bg">
         <img

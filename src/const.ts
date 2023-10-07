@@ -13,4 +13,10 @@ const AppRoute = {
   NotFound: '*',
 } as const;
 
-export { MAX_RATING_STAR_COUNT, AppRoute };
+const AuthStatus = {
+  Unknown: 'UNKNOWN',
+  Auth: 'AUTH',
+  NoAuth: 'NO_AUTH',
+} as const;
+
+export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus };

@@ -6,9 +6,13 @@ import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
 import styles from './not-found-page.module.css';
 import { AppRoute } from '../../const';
+import { Helmet } from 'react-helmet-async';
 
 const NotFoundPage = () => (
   <>
+    <Helmet>
+      <title>Упс, такой страницы нет</title>
+    </Helmet>
     <section className={`film-card ${styles['not-found-card']}`}>
       <div className="film-card__bg">
         <img

@@ -11,6 +11,7 @@ import { AppRoute } from '../../const';
 import { FilmOverview } from '../../components/film-overview/film-overview';
 import { FilmDetails } from '../../components/film-details/film-details';
 import { FilmReviews } from '../../components/film-reviews/film-reviews';
+import { Helmet } from 'react-helmet-async';
 
 type TFilmPageProps = {
   filmDetails: TFilmDetails;
@@ -26,6 +27,9 @@ const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
 
   return (
     <>
+      <Helmet>
+        <title>Что посмотреть: {name}</title>
+      </Helmet>
       <section
         className="film-card film-card--full"
         style={{ backgroundColor: `${backgroundColor}` }}

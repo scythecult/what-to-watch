@@ -1,5 +1,10 @@
+import { Helmet } from 'react-helmet-async';
+
 const PlayerPage = () => (
   <div className="player">
+    <Helmet>
+      <title>Вы смотрите filmName</title>
+    </Helmet>
     <video src="#" className="player__video" poster="img/player-poster.jpg" />
 
     <button type="button" className="player__exit">

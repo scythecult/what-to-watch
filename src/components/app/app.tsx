@@ -6,9 +6,10 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { TFilm, TFilmDetails, TPromoFilm } from '../../types';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { ReviewPage } from '../../pages/review-page/review-page';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthStatus } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
+import { HelmetProvider } from 'react-helmet-async';
 
 type TAppProps = {
   mockFilms: TFilm[];
@@ -23,36 +24,37 @@ const App = ({
   mockFilmDetails,
   mockSimiliarFilms,
 }: TAppProps) => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path={AppRoute.Root}
-        index
-        element={<MainPage films={mockFilms} promoFilm={mockPromoFilm} />}
-      />
-      <Route path={AppRoute.Login} element={<LoginPage />} />
-      <Route
-        path={AppRoute.Favorite}
-        element={
-          <PrivateRoute>
-            <FavoritesPage favoriteFilms={mockFilms} />
-          </PrivateRoute>
-        }
-      />
-      <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
-      <Route
-        path={`${AppRoute.Film}/:id/*`}
-        element={
-          <FilmPage
-            filmDetails={mockFilmDetails}
-            similiarFilms={mockSimiliarFilms}
-          />
-        }
-      />
-      <Route path={AppRoute.Review} element={<ReviewPage />} />
-      <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
-    </Routes>
-  </BrowserRouter>
+  <HelmetProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={<MainPage films={mockFilms} promoFilm={mockPromoFilm} />}
+        />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route
+          path={AppRoute.Favorite}
+          element={
+            <PrivateRoute authStatus={AuthStatus.NoAuth}>
+              <FavoritesPage favoriteFilms={mockFilms} />
+            </PrivateRoute>
+          }
+        />
+        <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
+        <Route
+          path={`${AppRoute.Film}/:id/*`}
+          element={
+            <FilmPage
+              filmDetails={mockFilmDetails}
+              similiarFilms={mockSimiliarFilms}
+            />
+          }
+        />
+        <Route path={AppRoute.Review} element={<ReviewPage />} />
+        <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  </HelmetProvider>
 );
 
 export { App };
