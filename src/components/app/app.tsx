@@ -41,7 +41,7 @@ const App = ({
       />
       <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
       <Route
-        path={AppRoute.Film}
+        path={`${AppRoute.Film}/:id/*`}
         element={
           <FilmPage
             filmDetails={mockFilmDetails}

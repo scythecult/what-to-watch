@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import { TFilm } from '../../types';
+import { AppRoute } from '../../const';
 
 type TFilmCardProps = TFilm;
 
 const FilmCard = (film: TFilmCardProps) => {
-  const { name, previewImage } = film;
+  const { id, name, previewImage } = film;
 
   return (
     <article className="small-film-card catalog__films-card">
@@ -11,9 +13,12 @@ const FilmCard = (film: TFilmCardProps) => {
         <img src={previewImage} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
+        <Link
+          className="small-film-card__link"
+          to={`${AppRoute.Film}/${id}/${AppRoute.FilmOverview}`}
+        >
           {name}
-        </a>
+        </Link>
       </h3>
     </article>
   );

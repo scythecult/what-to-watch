@@ -6,6 +6,9 @@ const AppRoute = {
   VideoPlayer: '/video-player',
   Favorite: '/favorite',
   Film: '/film',
+  FilmOverview: 'overview',
+  FilmDetails: 'details',
+  FilmReviews: 'reviews',
   Review: '/review',
   NotFound: '*',
 } as const;

@@ -1,4 +1,4 @@
-import { Logo } from '../logo';
+import { Logo } from '../logo/logo';
 
 const Footer = () => (
   <footer className="page-footer">

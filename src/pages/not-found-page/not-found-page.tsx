@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
 import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
 import styles from './not-found-page.module.css';

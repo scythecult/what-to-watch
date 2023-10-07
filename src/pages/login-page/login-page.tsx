@@ -1,7 +1,7 @@
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { LoginForm } from '../../components/login-form/login-form';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
 
 const LoginPage = () => (
   <div className="user-page">

@@ -2,7 +2,7 @@ import { FavoritesCount } from '../../components/favorites-count/favorites-count
 import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
 import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { TFilm } from '../../types';

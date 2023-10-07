@@ -1,6 +1,6 @@
 import { Header } from '../header/header';
 import { FilmDescription } from '../film-description/film-description';
-import { Logo } from '../logo';
+import { Logo } from '../logo/logo';
 import { UserNav } from '../user-nav/user-nav';
 import { TPromoFilm } from '../../types';
 

@@ -1,14 +1,16 @@
+import { Outlet, Route, Routes, useParams } from 'react-router-dom';
 import { FilmDescription } from '../../components/film-description/film-description';
-import { FilmDetails } from '../../components/film-details/film-details';
-import { FilmOverview } from '../../components/film-overview/film-overview';
-import { FilmReviews } from '../../components/film-reviews/film-reviews';
 import { FilmTabs } from '../../components/film-tabs/film-tabs';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
 import { SimiliarFilms } from '../../components/similiar-films/similiar-films';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { TFilm, TFilmDetails } from '../../types';
+import { AppRoute } from '../../const';
+import { FilmOverview } from '../../components/film-overview/film-overview';
+import { FilmDetails } from '../../components/film-details/film-details';
+import { FilmReviews } from '../../components/film-reviews/film-reviews';
 
 type TFilmPageProps = {
   filmDetails: TFilmDetails;
@@ -16,7 +18,11 @@ type TFilmPageProps = {
 };
 
 const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
+  const { id } = useParams();
   const { name, backgroundImage, backgroundColor, posterImage } = filmDetails;
+
+  // eslint-disable-next-line no-console
+  console.log(id);
 
   return (
     <>
@@ -46,15 +52,19 @@ const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
             <div className="film-card__poster film-card__poster--big">
               <img src={posterImage} alt={name} width="218" height="327" />
             </div>
-
             <div className="film-card__desc">
               <FilmTabs />
 
-              <FilmOverview />
+              <Routes>
+                <Route
+                  path={AppRoute.FilmOverview}
+                  element={<FilmOverview />}
+                />
+                <Route path={AppRoute.FilmDetails} element={<FilmDetails />} />
+                <Route path={AppRoute.FilmReviews} element={<FilmReviews />} />
+              </Routes>
 
-              <FilmDetails />
-
-              <FilmReviews />
+              <Outlet />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { Breadcrumbs } from '../../components/breadcrumbs/breadcrumbs';
 import { Header } from '../../components/header/header';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { StarRating } from '../../components/star-rating/star-rating';
 import { UserNav } from '../../components/user-nav/user-nav';
