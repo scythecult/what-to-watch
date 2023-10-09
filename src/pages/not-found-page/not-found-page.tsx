@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet-async';
 const NotFoundPage = () => (
   <>
     <Helmet>
-      <title>Упс, такой страницы нет</title>
+      <title>Что посмотреть. Упс, такой страницы нет</title>
     </Helmet>
     <section className={`film-card ${styles['not-found-card']}`}>
       <div className="film-card__bg">

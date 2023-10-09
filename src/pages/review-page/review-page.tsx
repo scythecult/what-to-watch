@@ -9,7 +9,7 @@ import { UserNav } from '../../components/user-nav/user-nav';
 const ReviewPage = () => (
   <section className="film-card film-card--full">
     <Helmet>
-      <title>Напишите отзыв</title>
+      <title>Что посмотреть. Напишите отзыв</title>
     </Helmet>
     <div className="film-card__header">
       <div className="film-card__bg">

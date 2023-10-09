@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { FavoritesCount } from '../../components/favorites-count/favorites-count';
 import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
@@ -16,6 +17,9 @@ const FavoritesPage = ({ favoriteFilms }: TFavoritesPageProps) => {
 
   return (
     <div className="user-page">
+      <Helmet>
+        <title>Что посмотреть. Избранное</title>
+      </Helmet>
       <Header className="user-page__head">
         <Logo />
         <FavoritesCount count={11} />

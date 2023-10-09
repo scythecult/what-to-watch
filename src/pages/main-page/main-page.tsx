@@ -16,7 +16,7 @@ type TMainProps = {
 const MainPage = ({ films = [], promoFilm }: TMainProps) => (
   <>
     <Helmet>
-      <title>Что посмотреть</title>
+      <title>Что посмотреть. Главная</title>
     </Helmet>
     <MainFilmCard {...promoFilm} />
 

@@ -28,7 +28,7 @@ const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
   return (
     <>
       <Helmet>
-        <title>Что посмотреть: {name}</title>
+        <title>Что посмотреть. {name}</title>
       </Helmet>
       <section
         className="film-card film-card--full"

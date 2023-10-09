@@ -7,7 +7,7 @@ import { Logo } from '../../components/logo/logo';
 const LoginPage = () => (
   <div className="user-page">
     <Helmet>
-      <title>Логин</title>
+      <title>Что посмотреть. Логин</title>
     </Helmet>
     <Header className="user-page__head">
       <Logo />
