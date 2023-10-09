@@ -1,28 +1,49 @@
+import { Helmet } from 'react-helmet-async';
 import { FavoritesCount } from '../../components/favorites-count/favorites-count';
 import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/logo/logo';
+import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
+import { TFilm } from '../../types';
 
-const FavoritesPage = () => (
-  <div className="user-page">
-    <Header className="user-page__head">
-      <Logo />
-      <FavoritesCount count={11} />
-      <UserNav />
-    </Header>
+type TFavoritesPageProps = {
+  favoriteFilms?: TFilm[];
+};
 
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+const FavoritesPage = ({ favoriteFilms }: TFavoritesPageProps) => {
+  const shouldRenderFavoriteFilms = !!favoriteFilms;
 
-      <div className="catalog__films-list">
-        <FilmCard />
-      </div>
-    </section>
+  return (
+    <div className="user-page">
+      <Helmet>
+        <title>Что посмотреть. Избранное</title>
+      </Helmet>
+      <Header className="user-page__head">
+        <Logo />
+        <FavoritesCount count={11} />
+        <UserNav />
+      </Header>
 
-    <Footer />
-  </div>
-);
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+        <div className="catalog__films-list">
+          {!shouldRenderFavoriteFilms && <Message />}
+
+          {shouldRenderFavoriteFilms &&
+            favoriteFilms.map((favoriteFilm) => {
+              const { id } = favoriteFilm;
+
+              return <FilmCard key={id} {...favoriteFilm} />;
+            })}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
 
 export { FavoritesPage };

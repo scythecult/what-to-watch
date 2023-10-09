@@ -1,0 +1,15 @@
+.not-found-card {
+  min-height: 100vh;
+}
+
+.not-found-page-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  row-gap: 20px;
+}
+
+.not-found-link {
+  color: currentColor;
+}

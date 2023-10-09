@@ -1,20 +1,23 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 const FilmTabs = () => (
   <nav className="film-nav film-card__nav">
     <ul className="film-nav__list">
       <li className="film-nav__item film-nav__item--active">
-        <a href="#" className="film-nav__link">
+        <Link className="film-nav__link" to={AppRoute.FilmOverview}>
           Overview
-        </a>
+        </Link>
       </li>
       <li className="film-nav__item">
-        <a href="#" className="film-nav__link">
+        <Link className="film-nav__link" to={AppRoute.FilmDetails}>
           Details
-        </a>
+        </Link>
       </li>
       <li className="film-nav__item">
-        <a href="#" className="film-nav__link">
+        <Link className="film-nav__link" to={AppRoute.FilmReviews}>
           Reviews
-        </a>
+        </Link>
       </li>
     </ul>
   </nav>

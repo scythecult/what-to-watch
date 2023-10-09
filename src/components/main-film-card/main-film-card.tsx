@@ -1,39 +1,34 @@
 import { Header } from '../header/header';
 import { FilmDescription } from '../film-description/film-description';
-import { Logo } from '../logo';
+import { Logo } from '../logo/logo';
 import { UserNav } from '../user-nav/user-nav';
+import { TPromoFilm } from '../../types';
 
-const MainFilmCard = () => (
-  <section className="film-card">
-    <div className="film-card__bg">
-      <img
-        src="img/bg-the-grand-budapest-hotel.jpg"
-        alt="The Grand Budapest Hotel"
-      />
-    </div>
+type TMainFilmCardProps = TPromoFilm;
 
-    <h1 className="visually-hidden">WTW</h1>
+const MainFilmCard = (filmData: TMainFilmCardProps) => {
+  const { name, backgroundImage } = filmData;
 
-    <Header className="film-card__head">
-      <Logo />
-      <UserNav />
-    </Header>
-
-    <div className="film-card__wrap">
-      <div className="film-card__info">
-        <div className="film-card__poster">
-          <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
-            width="218"
-            height="327"
-          />
-        </div>
-
-        <FilmDescription />
+  return (
+    <section className="film-card">
+      <div className="film-card__bg">
+        <img src={backgroundImage} alt={name} />
       </div>
-    </div>
-  </section>
-);
+
+      <h1 className="visually-hidden">WTW</h1>
+
+      <Header className="film-card__head">
+        <Logo />
+        <UserNav />
+      </Header>
+
+      <div className="film-card__wrap">
+        <div className="film-card__info">
+          <FilmDescription {...filmData} withPoster />
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export { MainFilmCard };
