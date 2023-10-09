@@ -18,7 +18,7 @@ type TFilmPageProps = {
   similiarFilms: TFilm[];
 };
 
-const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
+const FilmPage = ({ filmDetails, similiarFilms = [] }: TFilmPageProps) => {
   const { id } = useParams();
   const { name, backgroundImage, backgroundColor, posterImage } = filmDetails;
 
