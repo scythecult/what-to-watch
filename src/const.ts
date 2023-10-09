@@ -1,5 +1,10 @@
 const MAX_RATING_STAR_COUNT = 10;
 
+const MessageText = {
+  EmptyFilmPage: 'Sorry, there is no films...',
+  NotFoundPage: '404 Page Not Found',
+} as const;
+
 const AppRoute = {
   Root: '/',
   Login: '/login',
@@ -19,4 +24,4 @@ const AuthStatus = {
   NoAuth: 'NO_AUTH',
 } as const;
 
-export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus };
+export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus, MessageText };

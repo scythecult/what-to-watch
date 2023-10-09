@@ -5,7 +5,7 @@ import { Logo } from '../../components/logo/logo';
 import { Message } from '../../components/message/message';
 import { UserNav } from '../../components/user-nav/user-nav';
 import styles from './not-found-page.module.css';
-import { AppRoute } from '../../const';
+import { AppRoute, MessageText } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 const NotFoundPage = () => (
@@ -30,7 +30,7 @@ const NotFoundPage = () => (
     </section>
 
     <div className={`page-content ${styles['not-found-page-content']}`}>
-      <Message message="404 Page Not Found" />
+      <Message message={MessageText.NotFoundPage} />
       <Link className={styles['not-found-link']} to={AppRoute.Root}>
         Back
       </Link>

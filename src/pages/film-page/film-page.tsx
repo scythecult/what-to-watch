@@ -4,7 +4,6 @@ import { FilmTabs } from '../../components/film-tabs/film-tabs';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo/logo';
-import { SimiliarFilms } from '../../components/similiar-films/similiar-films';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { TFilm, TFilmDetails } from '../../types';
 import { AppRoute } from '../../const';
@@ -12,6 +11,7 @@ import { FilmOverview } from '../../components/film-overview/film-overview';
 import { FilmDetails } from '../../components/film-details/film-details';
 import { FilmReviews } from '../../components/film-reviews/film-reviews';
 import { Helmet } from 'react-helmet-async';
+import { FilmList } from '../../components/film-list/film-list';
 
 type TFilmPageProps = {
   filmDetails: TFilmDetails;
@@ -75,7 +75,11 @@ const FilmPage = ({ filmDetails, similiarFilms }: TFilmPageProps) => {
       </section>
 
       <div className="page-content">
-        <SimiliarFilms similiarFilms={similiarFilms} />
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+
+          <FilmList films={similiarFilms} />
+        </section>
         <Footer />
       </div>
     </>

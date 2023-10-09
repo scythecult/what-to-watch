@@ -35,7 +35,7 @@ const App = ({
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authStatus={AuthStatus.NoAuth}>
+            <PrivateRoute authStatus={AuthStatus.Auth}>
               <FavoritesPage favoriteFilms={mockFilms} />
             </PrivateRoute>
           }
