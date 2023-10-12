@@ -3,7 +3,6 @@ import { Breadcrumbs } from '../../components/breadcrumbs/breadcrumbs';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from '../../components/review-form/review-form';
-import { StarRating } from '../../components/star-rating/star-rating';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { useParams } from 'react-router-dom';
 
@@ -41,9 +40,7 @@ const ReviewPage = () => {
         </div>
       </div>
       <div className="add-review">
-        <ReviewForm>
-          <StarRating />
-        </ReviewForm>
+        <ReviewForm filmId={id} />
       </div>
     </section>
   );

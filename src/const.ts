@@ -26,4 +26,16 @@ const AuthStatus = {
   NoAuth: 'NO_AUTH',
 } as const;
 
-export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus, MessageText, FILM_TABS };
+const ReviewFormBoundaries = {
+  MinLength: 50,
+  MaxLength: 300,
+} as const;
+
+export {
+  MAX_RATING_STAR_COUNT,
+  AppRoute,
+  AuthStatus,
+  MessageText,
+  FILM_TABS,
+  ReviewFormBoundaries,
+};
