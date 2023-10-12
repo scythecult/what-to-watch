@@ -5,41 +5,48 @@ import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { StarRating } from '../../components/star-rating/star-rating';
 import { UserNav } from '../../components/user-nav/user-nav';
+import { useParams } from 'react-router-dom';
 
-const ReviewPage = () => (
-  <section className="film-card film-card--full">
-    <Helmet>
-      <title>Что посмотреть. Напишите отзыв</title>
-    </Helmet>
-    <div className="film-card__header">
-      <div className="film-card__bg">
-        <img
-          src="img/bg-the-grand-budapest-hotel.jpg"
-          alt="The Grand Budapest Hotel"
-        />
-      </div>
-      <h1 className="visually-hidden">WTW</h1>
-      <Header>
-        <Logo />
-        <Breadcrumbs />
-        <UserNav />
-      </Header>
+const ReviewPage = () => {
+  const { id } = useParams();
+  // eslint-disable-next-line no-console
+  console.log(id);
 
-      <div className="film-card__poster film-card__poster--small">
-        <img
-          src="img/the-grand-budapest-hotel-poster.jpg"
-          alt="The Grand Budapest Hotel poster"
-          width={218}
-          height={327}
-        />
+  return (
+    <section className="film-card film-card--full">
+      <Helmet>
+        <title>Что посмотреть. Напишите отзыв</title>
+      </Helmet>
+      <div className="film-card__header">
+        <div className="film-card__bg">
+          <img
+            src="img/bg-the-grand-budapest-hotel.jpg"
+            alt="The Grand Budapest Hotel"
+          />
+        </div>
+        <h1 className="visually-hidden">WTW</h1>
+        <Header>
+          <Logo />
+          <Breadcrumbs filmId={id} />
+          <UserNav />
+        </Header>
+
+        <div className="film-card__poster film-card__poster--small">
+          <img
+            src="img/the-grand-budapest-hotel-poster.jpg"
+            alt="The Grand Budapest Hotel poster"
+            width={218}
+            height={327}
+          />
+        </div>
       </div>
-    </div>
-    <div className="add-review">
-      <ReviewForm>
-        <StarRating />
-      </ReviewForm>
-    </div>
-  </section>
-);
+      <div className="add-review">
+        <ReviewForm>
+          <StarRating />
+        </ReviewForm>
+      </div>
+    </section>
+  );
+};
 
 export { ReviewPage };
