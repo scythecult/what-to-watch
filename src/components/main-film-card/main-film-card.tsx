@@ -3,6 +3,7 @@ import { FilmDescription } from '../film-description/film-description';
 import { Logo } from '../logo/logo';
 import { UserNav } from '../user-nav/user-nav';
 import { TPromoFilm } from '../../types';
+import { FilmNav } from '../film-nav/film-nav';
 
 type TMainFilmCardProps = TPromoFilm;
 
@@ -24,7 +25,9 @@ const MainFilmCard = (filmData: TMainFilmCardProps) => {
 
       <div className="film-card__wrap">
         <div className="film-card__info">
-          <FilmDescription {...filmData} withPoster />
+          <FilmDescription filmDetails={filmData} withPoster>
+            <FilmNav />
+          </FilmDescription>
         </div>
       </div>
     </section>

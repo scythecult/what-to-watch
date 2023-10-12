@@ -1,10 +1,17 @@
+import { PropsWithChildren } from 'react';
 import { TPromoFilm } from '../../types';
-import { FilmNav } from '../film-nav/film-nav';
 
-type TFilmDescriptionProps = TPromoFilm & { withPoster?: boolean };
+type TFilmDescriptionProps = PropsWithChildren<{
+  filmDetails: TPromoFilm;
+  withPoster?: boolean;
+}>;
 
-const FilmDescription = (filmData: TFilmDescriptionProps) => {
-  const { name, genre, released, posterImage, withPoster = false } = filmData;
+const FilmDescription = ({
+  filmDetails,
+  children,
+  withPoster = false,
+}: TFilmDescriptionProps) => {
+  const { name, genre, released, posterImage } = filmDetails;
 
   return (
     <>
@@ -19,8 +26,7 @@ const FilmDescription = (filmData: TFilmDescriptionProps) => {
           <span className="film-card__genre">{genre}</span>
           <span className="film-card__year">{released}</span>
         </p>
-
-        <FilmNav />
+        {children}
       </div>
     </>
   );
