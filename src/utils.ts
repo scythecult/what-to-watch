@@ -1,5 +1,8 @@
 import { TFilm } from './types';
 
+const makeUcFirst = (value: string) =>
+  `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+
 const getGenres = (films: TFilm[]) =>
   Object.keys(
     films.reduce(
@@ -14,4 +17,4 @@ const generateRatingValues = (count: number) =>
     .map((_, index) => index + 1)
     .reverse();
 
-export { generateRatingValues, getGenres };
+export { generateRatingValues, getGenres, makeUcFirst };

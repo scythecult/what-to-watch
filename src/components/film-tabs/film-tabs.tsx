@@ -1,26 +1,31 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { FILM_TABS } from '../../const';
+import { useState } from 'react';
+import classNames from 'classnames';
+import { makeUcFirst } from '../../utils';
 
-const FilmTabs = () => (
-  <nav className="film-nav film-card__nav">
-    <ul className="film-nav__list">
-      <li className="film-nav__item film-nav__item--active">
-        <Link className="film-nav__link" to={AppRoute.FilmOverview}>
-          Overview
-        </Link>
-      </li>
-      <li className="film-nav__item">
-        <Link className="film-nav__link" to={AppRoute.FilmDetails}>
-          Details
-        </Link>
-      </li>
-      <li className="film-nav__item">
-        <Link className="film-nav__link" to={AppRoute.FilmReviews}>
-          Reviews
-        </Link>
-      </li>
-    </ul>
-  </nav>
-);
+const FilmTabs = () => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  return (
+    <nav className="film-nav film-card__nav">
+      <ul className="film-nav__list">
+        {FILM_TABS.map((filmTab, index) => (
+          <li
+            className={`film-nav__item ${classNames({
+              'film-nav__item--active': activeIndex === index,
+            })}`}
+            key={filmTab}
+            onClick={() => setActiveIndex(index)}
+          >
+            <Link className="film-nav__link" to={filmTab}>
+              {makeUcFirst(filmTab)}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
 export { FilmTabs };

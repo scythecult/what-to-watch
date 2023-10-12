@@ -18,10 +18,12 @@ const AppRoute = {
   NotFound: '*',
 } as const;
 
+const FILM_TABS = ['overview', 'details', 'reviews'] as const;
+
 const AuthStatus = {
   Unknown: 'UNKNOWN',
   Auth: 'AUTH',
   NoAuth: 'NO_AUTH',
 } as const;
 
-export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus, MessageText };
+export { MAX_RATING_STAR_COUNT, AppRoute, AuthStatus, MessageText, FILM_TABS };
