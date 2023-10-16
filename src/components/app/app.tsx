@@ -10,6 +10,9 @@ import { AppRoute, AuthStatus } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
+import { FilmOverview } from '../film-overview/film-overview';
+import { FilmDetails } from '../film-details/film-details';
+import { FilmReviews } from '../film-reviews/film-reviews';
 
 type TAppProps = {
   mockFilms: TFilm[];
@@ -35,22 +38,29 @@ const App = ({
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authStatus={AuthStatus.NoAuth}>
+            <PrivateRoute authStatus={AuthStatus.Auth}>
               <FavoritesPage favoriteFilms={mockFilms} />
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
         <Route
-          path={`${AppRoute.Film}/:id/*`}
+          path={`${AppRoute.Film}/:id`}
           element={
             <FilmPage
               filmDetails={mockFilmDetails}
               similiarFilms={mockSimiliarFilms}
             />
           }
+        >
+          <Route path={AppRoute.FilmOverview} element={<FilmOverview />} />
+          <Route path={AppRoute.FilmDetails} element={<FilmDetails />} />
+          <Route path={AppRoute.FilmReviews} element={<FilmReviews />} />
+        </Route>
+        <Route
+          path={`${AppRoute.Film}/:id${AppRoute.Review}`}
+          element={<ReviewPage />}
         />
-        <Route path={AppRoute.Review} element={<ReviewPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

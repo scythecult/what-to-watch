@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
-import { FilmCard } from '../../components/film-card/film-card';
 import { Footer } from '../../components/footer/footer';
 import { GenresFilter } from '../../components/genres-filter/genres-filter';
 import { MainFilmCard } from '../../components/main-film-card/main-film-card';
 import { TFilm, TPromoFilm } from '../../types';
+import { FilmList } from '../../components/film-list/film-list';
 
 type TMainProps = {
   films: TFilm[];
@@ -26,13 +26,7 @@ const MainPage = ({ films = [], promoFilm }: TMainProps) => (
 
         <GenresFilter />
 
-        <div className="catalog__films-list">
-          {films.map((film) => {
-            const { id } = film;
-
-            return <FilmCard key={id} {...film} />;
-          })}
-        </div>
+        <FilmList films={films} />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">
