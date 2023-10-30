@@ -36,7 +36,7 @@ const ReviewForm = ({ filmId = '' }: TReviewForm) => {
   const handleReviewTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewData((prevReviewData) => ({
       ...prevReviewData,
-      reviewText: evt.target.value.trim(),
+      reviewText: evt.target.value,
     }));
   };
 
