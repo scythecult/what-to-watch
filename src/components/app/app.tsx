@@ -43,7 +43,7 @@ const App = ({
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.VideoPlayer} element={<PlayerPage />} />
+        <Route path={`${AppRoute.VideoPlayer}/:id`} element={<PlayerPage />} />
         <Route
           path={`${AppRoute.Film}/:id`}
           element={

@@ -1,19 +1,25 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute, AuthStatus } from '../../const';
 
-const FilmNav = () => {
-  const { id } = useParams();
+type TFilmNavProps = {
+  filmId: string;
+};
+
+const FilmNav = ({ filmId }: TFilmNavProps) => {
   const authStatus = AuthStatus.Auth;
-  const shouldRenderReview = authStatus === AuthStatus.Auth && id;
+  const shouldRender = authStatus === AuthStatus.Auth;
 
   return (
     <div className="film-card__buttons">
-      <button className="btn btn--play film-card__button" type="button">
+      <Link
+        className="btn btn--play film-card__button"
+        to={`${AppRoute.VideoPlayer}/${filmId}`}
+      >
         <svg viewBox="0 0 19 19" width="19" height="19">
           <use xlinkHref="#play-s"></use>
         </svg>
         <span>Play</span>
-      </button>
+      </Link>
       <button className="btn btn--list film-card__button" type="button">
         <svg viewBox="0 0 19 20" width="19" height="20">
           <use xlinkHref="#add"></use>
@@ -21,10 +27,10 @@ const FilmNav = () => {
         <span>My list</span>
         <span className="film-card__count">9</span>
       </button>
-      {shouldRenderReview && (
+      {shouldRender && (
         <Link
           className="btn film-card__button"
-          to={`${AppRoute.Film}/${id}${AppRoute.Review}`}
+          to={`${AppRoute.Film}/${filmId}${AppRoute.Review}`}
         >
           Add review
         </Link>

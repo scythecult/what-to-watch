@@ -8,7 +8,7 @@ import { FilmNav } from '../film-nav/film-nav';
 type TMainFilmCardProps = TPromoFilm;
 
 const MainFilmCard = (filmData: TMainFilmCardProps) => {
-  const { name, backgroundImage } = filmData;
+  const { id, name, backgroundImage } = filmData;
 
   return (
     <section className="film-card">
@@ -26,7 +26,7 @@ const MainFilmCard = (filmData: TMainFilmCardProps) => {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <FilmDescription filmDetails={filmData} withPoster>
-            <FilmNav />
+            <FilmNav filmId={id} />
           </FilmDescription>
         </div>
       </div>

@@ -45,7 +45,7 @@ const FilmPage = ({ filmDetails, similiarFilms = [] }: TFilmPageProps) => {
 
           <div className="film-card__wrap">
             <FilmDescription filmDetails={filmDetails}>
-              <FilmNav />
+              {id && <FilmNav filmId={id} />}
             </FilmDescription>
           </div>
         </div>
