@@ -8,7 +8,7 @@ const mockDetails: TFilmDetails = {
   backgroundImage:
     'https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Shutter_Island.jpg',
   backgroundColor: '#ffffff',
-  videoLink: 'https://13.design.pages.academy/static/film/video/bubbles.mp4',
+  videoLink: 'https://13.design.htmlacademy.pro/static/film/video/bubbles.mp4',
   description:
     'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege.',
   rating: 8.9,

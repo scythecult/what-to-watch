@@ -17,4 +17,7 @@ const generateRatingValues = (count: number) =>
     .map((_, index) => index + 1)
     .reverse();
 
-export { generateRatingValues, getGenres, makeUcFirst };
+const getFormattedPlayTime = (time: number) =>
+  `${Math.floor(time / 60)} :  ${time % 60}`;
+
+export { generateRatingValues, getGenres, makeUcFirst, getFormattedPlayTime };

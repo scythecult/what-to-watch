@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { TFilmDetails } from '../../types';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLoadedData } from '../../hooks/use-loaded-data';
 import { usePlayer } from '../../hooks/use-player';
+import { getFormattedPlayTime } from '../../utils';
 
 type TPlayerProps = {
   film: TFilmDetails;
@@ -35,14 +36,40 @@ const Player = ({ film }: TPlayerProps) => {
   const { name, runTime, videoLink, posterImage } = film;
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isLoaded] = useLoadedData(videoRef);
-  const [isPlaying, setIsPlaying] = usePlayer({
+  const [togglePlayingState, setTogglePlayingState] = usePlayer({
     elementRef: videoRef,
     isLoaded,
   });
+  const [progress, setProgress] = useState<number>(0);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
 
   const handleVideoClick = () => {
-    setIsPlaying();
+    setTogglePlayingState();
   };
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    let intervalId: ReturnType<typeof setInterval>;
+
+    if (!videoElement || !isLoaded) {
+      return;
+    }
+
+    if (togglePlayingState) {
+      intervalId = setInterval(() => {
+        const currentProgress =
+          (videoElement.currentTime * 100) / videoElement.duration;
+        const currentElapsedTime = Math.floor(
+          videoElement.duration - videoElement.currentTime
+        );
+
+        setProgress(currentProgress);
+        setElapsedTime(currentElapsedTime);
+      }, 1000);
+    }
+
+    return () => clearInterval(intervalId);
+  });
 
   return (
     <div className="player">
@@ -62,12 +89,14 @@ const Player = ({ film }: TPlayerProps) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100" />
-            <div className="player__toggler" style={{ left: '30%' }}>
+            <progress className="player__progress" value={progress} max="100" />
+            <div className="player__toggler" style={{ left: `${progress}%` }}>
               Toggler
             </div>
           </div>
-          <div className="player__time-value">{runTime}</div>
+          <div className="player__time-value">
+            {elapsedTime} / {getFormattedPlayTime(runTime)}
+          </div>
         </div>
 
         <div className="player__controls-row">
@@ -77,7 +106,7 @@ const Player = ({ film }: TPlayerProps) => {
             onClick={handleVideoClick}
             disabled={!isLoaded}
           >
-            {getIconByPlayState(isPlaying)}
+            {getIconByPlayState(togglePlayingState)}
           </button>
           <div className="player__name">{name}</div>
 

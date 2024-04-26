@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './review-form.module.css';
 import { StarRating } from '../star-rating/star-rating';
-import { ReviewFormBoundaries } from '../../const';
+import { ReviewFormBoundary } from '../../const';
 
 type TReviewForm = { filmId: string | undefined };
 type TUserReviewData = {
@@ -19,11 +19,10 @@ const ReviewForm = ({ filmId = '' }: TReviewForm) => {
 
   const { reviewText, rating } = reviewData;
   const isMinCharsLenghtInRange =
-    reviewText.length > 0 &&
-    reviewText.length <= ReviewFormBoundaries.MinLength;
+    reviewText.length > 0 && reviewText.length <= ReviewFormBoundary.MinLength;
   const isFormValid =
-    reviewText.length > ReviewFormBoundaries.MinLength &&
-    reviewText.length < ReviewFormBoundaries.MaxLength &&
+    reviewText.length > ReviewFormBoundary.MinLength &&
+    reviewText.length < ReviewFormBoundary.MaxLength &&
     rating > 0;
 
   const handleRatingClick = (ratingValue: number) => {
@@ -75,8 +74,7 @@ const ReviewForm = ({ filmId = '' }: TReviewForm) => {
         film with at least <b>50 characters</b>.
         {isMinCharsLenghtInRange && (
           <b>
-            Сharacters left:{' '}
-            {ReviewFormBoundaries.MinLength - reviewText.length}
+            Сharacters left: {ReviewFormBoundary.MinLength - reviewText.length}
           </b>
         )}
       </p>
