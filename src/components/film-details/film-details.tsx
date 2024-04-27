@@ -8,7 +8,7 @@ const FilmDetails = () => (
       <p className="film-card__details-item">
         <strong className="film-card__details-name">Starring</strong>
         <span className="film-card__details-value">
-          Bill Murray, <br />
+          Bill2 Murray, <br />
           Edward Norton, <br />
           Jude Law, <br />
           Willem Dafoe, <br />

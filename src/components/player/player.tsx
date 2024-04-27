@@ -10,7 +10,7 @@ type TPlayerProps = {
   film: TFilmDetails;
 };
 
-const getIconByPlayState = (isPlaying: boolean) => {
+const renderIcon = (isPlaying: boolean) => {
   if (isPlaying) {
     return (
       <>
@@ -106,7 +106,7 @@ const Player = ({ film }: TPlayerProps) => {
             onClick={handleVideoClick}
             disabled={!isLoaded}
           >
-            {getIconByPlayState(togglePlayingState)}
+            {renderIcon(togglePlayingState)}
           </button>
           <div className="player__name">{name}</div>
 
