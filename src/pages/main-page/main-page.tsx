@@ -1,8 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Footer } from '../../components/footer/footer';
-import { ItemsFilter } from '../../components/items-filter/items-filter';
 import { MainFilmCard } from '../../components/main-film-card/main-film-card';
-import { FilmList } from '../../components/film-list/film-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import {
   filmsSelector,
@@ -11,16 +9,17 @@ import {
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setFilter } from '../../store/filter-slice/filter-slice';
+import { Catalog } from '../../components/catalog/catalog';
 
 const MainPage = () => {
-  const { filter = '' } = useParams();
+  const { filter: genreFilter = '' } = useParams();
   const dispatch = useAppDispatch();
   const films = useAppSelector(filmsSelector);
   const promoFilm = useAppSelector(promoFilmSelector);
 
   useEffect(() => {
-    dispatch(setFilter(filter));
-  }, [filter, dispatch]);
+    dispatch(setFilter(genreFilter));
+  }, [genreFilter, dispatch]);
 
   return (
     <>
@@ -30,19 +29,7 @@ const MainPage = () => {
       <MainFilmCard {...promoFilm} />
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ItemsFilter />
-
-          <FilmList films={films} />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
-        </section>
+        <Catalog key={genreFilter} films={films} />
 
         <Footer />
       </div>
