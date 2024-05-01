@@ -1,36 +1,62 @@
 import { Link } from 'react-router-dom';
 import { TFilm } from '../../types';
 import { AppRoute } from '../../const';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Spinner } from '../spinner/spinner';
+import styles from './film-card.module.css';
 
 type TFilmCardProps = TFilm;
 
 const FilmCard = (film: TFilmCardProps) => {
-  const [isVideoPreview, setIsVideoPreview] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const previewVideoRef = useRef<HTMLVideoElement | null>(null);
   const { id, name, previewImage, previewVideoLink } = film;
 
-  const handleMouse = () =>
-    setIsVideoPreview((prevVideoPreview) => !prevVideoPreview);
+  const handleImageLoad = () => setIsLoading(false);
+
+  const handlePreviewMouseMove = () => {
+    const previewVideoElement = previewVideoRef.current;
+
+    if (isLoading) {
+      return;
+    }
+
+    if (previewVideoElement) {
+      if (!isPlaying) {
+        previewVideoElement.play();
+        previewVideoElement.hidden = false;
+        setIsPlaying(true);
+      } else {
+        previewVideoElement.hidden = true;
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
     <article
-      className="small-film-card catalog__films-card"
-      onMouseEnter={handleMouse}
-      onMouseLeave={handleMouse}
+      className={`small-film-card catalog__films-card ${styles.filmCard}`}
+      onMouseEnter={handlePreviewMouseMove}
+      onMouseLeave={handlePreviewMouseMove}
     >
       <div className="small-film-card__image">
-        {isVideoPreview ? (
-          <video
-            src={previewVideoLink}
-            playsInline
-            autoPlay
-            muted
-            width="280"
-            height="175"
-          />
-        ) : (
-          <img src={previewImage} alt={name} width="280" height="175" />
-        )}
+        {isLoading && <Spinner />}
+        <video
+          src={previewVideoLink}
+          ref={previewVideoRef}
+          poster={previewImage}
+          muted
+          width="280"
+          height="175"
+        />
+        <img
+          onLoad={handleImageLoad}
+          src={previewImage}
+          alt={name}
+          width="280"
+          height="175"
+        />
       </div>
       <h3 className="small-film-card__title">
         <Link
