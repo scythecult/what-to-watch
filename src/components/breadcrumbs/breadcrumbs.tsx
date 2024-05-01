@@ -3,12 +3,12 @@ import { AppRoute } from '../../const';
 
 type TBreadcrumbsProps = {
   filmId: string | undefined;
-  filmFitle?: string;
+  filmTitle?: string;
 };
 
 const Breadcrumbs = ({
   filmId = '',
-  filmFitle = 'The Grand Budapest Hotel',
+  filmTitle = 'The Grand Budapest Hotel',
 }: TBreadcrumbsProps) => (
   <nav className="breadcrumbs">
     <ul className="breadcrumbs__list">
@@ -17,7 +17,7 @@ const Breadcrumbs = ({
           className="breadcrumbs__link"
           to={`${AppRoute.Film}/${filmId}/${AppRoute.FilmOverview}`}
         >
-          {filmFitle}
+          {filmTitle}
         </Link>
       </li>
       <li className="breadcrumbs__item">
