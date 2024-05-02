@@ -6,10 +6,13 @@ import { mockDetails } from './mocks/details';
 import { mockSimiliarFilms } from './mocks/similiar-films';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { loadFilms } from './store/async-actions';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(loadFilms());
 
 root.render(
   <React.StrictMode>
