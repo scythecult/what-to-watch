@@ -55,7 +55,7 @@ export enum APIRoute {
 }
 ```
 
-OpenApiUrl: https://13.design.pages.academy/spec/wtw#servers
+OpenApiUrl: https://13.design.htmlacademy.pro/spec/wtw
 
 #### 5. Начинайте обучение!
 
