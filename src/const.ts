@@ -1,4 +1,14 @@
+export const PROJECT_ALIAS = 'wtw';
+export const BASE_API_URL = 'https://13.design.htmlacademy.pro';
+export const REQUEST_TIMEOUT = 5000;
 export const MAX_RATING_STAR_COUNT = 10;
+
+export const ApiRoute = {
+  Films: `${PROJECT_ALIAS}/films`,
+} as const;
+
+export type ApiRouteKey = keyof typeof ApiRoute;
+export type ApiRouteValue = (typeof ApiRoute)[ApiRouteKey];
 
 export const MessageText = {
   EmptyFilmPage: 'Sorry, there is no films...',
