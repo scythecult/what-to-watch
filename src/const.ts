@@ -5,6 +5,7 @@ export const MAX_RATING_STAR_COUNT = 10;
 
 export const ApiRoute = {
   Films: `${PROJECT_ALIAS}/films`,
+  PromoFilm: `${PROJECT_ALIAS}/promo`,
 } as const;
 
 export type ApiRouteKey = keyof typeof ApiRoute;

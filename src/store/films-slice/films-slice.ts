@@ -1,17 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TFilm, TPromoFilm } from '../../types';
 import { StoreName } from '../const';
-import { mockPromo } from '../../mocks/promo';
-import { loadFilms } from '../async-actions';
+import { loadFilms, loadPromoFilm } from '../async-actions';
 
 export type FilmsState = {
   films: TFilm[];
-  promoFilm: TPromoFilm;
+  promoFilm: TPromoFilm | null;
 };
 
 const initialState: FilmsState = {
   films: [],
-  promoFilm: mockPromo,
+  promoFilm: null,
 };
 
 export const filmsSlice = createSlice({
@@ -21,6 +20,9 @@ export const filmsSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(loadFilms.fulfilled, (state, action) => {
       state.films = action.payload;
+    });
+    builder.addCase(loadPromoFilm.fulfilled, (state, action) => {
+      state.promoFilm = action.payload;
     });
   },
 });
