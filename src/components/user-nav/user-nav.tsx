@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthStatus } from '../../const';
+import { useAppSelector } from '../../hooks/use-store';
+import { userAuthStatusSelector } from '../../store/user-slice/selectors';
 
 const UserNav = () => {
-  const authStatus = 'auth';
+  const authStatus = useAppSelector(userAuthStatusSelector);
+  const shouldRenderUserInfo = authStatus === AuthStatus.Auth;
 
   return (
     <ul className="user-block">
-      {authStatus === 'auth' ? (
+      {shouldRenderUserInfo ? (
         <>
           <li className="user-block__item">
             <div className="user-block__avatar">

@@ -6,7 +6,7 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { TFilm, TFilmDetails } from '../../types';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { ReviewPage } from '../../pages/review-page/review-page';
-import { AppRoute, AuthStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
@@ -29,7 +29,7 @@ const App = ({ mockFilms, mockFilmDetails, mockSimiliarFilms }: TAppProps) => (
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute authStatus={AuthStatus.Auth}>
+            <PrivateRoute>
               <FavoritesPage favoriteFilms={mockFilms} />
             </PrivateRoute>
           }
