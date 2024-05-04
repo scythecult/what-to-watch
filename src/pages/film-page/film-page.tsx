@@ -17,7 +17,12 @@ type TFilmPageProps = {
 
 const FilmPage = ({ filmDetails, similiarFilms = [] }: TFilmPageProps) => {
   const { id } = useParams();
-  const { name, backgroundImage, backgroundColor, posterImage } = filmDetails;
+  const {
+    name,
+    backgroundImage,
+    backgroundColor = '',
+    posterImage,
+  } = filmDetails;
 
   // eslint-disable-next-line no-console
   console.log(id);
