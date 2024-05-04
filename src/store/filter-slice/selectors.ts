@@ -1,8 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { StoreName, StoreNameValue } from '../const';
+import { StoreName } from '../const';
 
 export const filterSelector = createSelector(
-  [(state: Pick<RootState, StoreNameValue>) => state[StoreName.Filters]],
+  [
+    (state: Pick<RootState, typeof StoreName.Filters>) =>
+      state[StoreName.Filters],
+  ],
   ({ currentFilter }) => currentFilter
 );
