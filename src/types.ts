@@ -49,3 +49,8 @@ export type UserInfoResponse = {
   email: string;
   token: string;
 };
+
+export type ErrorInfo = {
+  serverMessage: string;
+  responseMessage: string;
+};
