@@ -59,12 +59,14 @@ const FilmCard = (film: TFilmCardProps) => {
         />
       </div>
       <h3 className="small-film-card__title">
-        <Link
-          className="small-film-card__link"
-          to={`${AppRoute.Film}/${id}/${AppRoute.FilmOverview}`}
-        >
-          {name}
-        </Link>
+        {id && (
+          <Link
+            className="small-film-card__link"
+            to={`${AppRoute.Film}/${id}/${AppRoute.FilmOverview}`}
+          >
+            {name}
+          </Link>
+        )}
       </h3>
     </article>
   );

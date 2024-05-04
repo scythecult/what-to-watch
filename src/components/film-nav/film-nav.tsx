@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthStatus } from '../../const';
 
 type TFilmNavProps = {
-  filmId: string;
+  filmId: string | undefined;
 };
 
-const FilmNav = ({ filmId }: TFilmNavProps) => {
+const FilmNav = ({ filmId = '' }: TFilmNavProps) => {
   const authStatus = AuthStatus.Auth;
   const shouldRender = authStatus === AuthStatus.Auth;
 

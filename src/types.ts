@@ -1,21 +1,21 @@
 type TStarring = string[];
 
 type TFilmDetails = {
-  id: string;
-  name: string;
-  posterImage: string;
-  backgroundImage: string;
-  backgroundColor: string;
-  videoLink: string;
-  description: string;
-  rating: number;
-  scoresCount: number;
-  director: string;
-  starring: TStarring;
-  runTime: number;
-  genre: string;
-  released: number;
-  isFavorite: boolean;
+  id?: string;
+  name?: string;
+  posterImage?: string;
+  backgroundImage?: string;
+  backgroundColor?: string;
+  videoLink?: string;
+  description?: string;
+  rating?: number;
+  scoresCount?: number;
+  director?: string;
+  starring?: TStarring;
+  runTime?: number;
+  genre?: string;
+  released?: number;
+  isFavorite?: boolean;
 };
 
 type TFilmComment = {
