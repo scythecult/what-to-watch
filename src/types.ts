@@ -1,6 +1,6 @@
-type TStarring = string[];
+export type TStarring = string[];
 
-type TFilmDetails = {
+export type TFilmDetails = {
   id?: string;
   name?: string;
   posterImage?: string;
@@ -18,7 +18,7 @@ type TFilmDetails = {
   isFavorite?: boolean;
 };
 
-type TFilmComment = {
+export type TFilmComment = {
   id: string;
   comment: string;
   date: string;
@@ -26,12 +26,12 @@ type TFilmComment = {
   user: string;
 };
 
-type TFilm = Pick<TFilmDetails, 'id' | 'name' | 'genre'> & {
+export type TFilm = Pick<TFilmDetails, 'id' | 'name' | 'genre'> & {
   previewImage: string;
   previewVideoLink: string;
 };
 
-type TPromoFilm = Pick<
+export type TPromoFilm = Pick<
   TFilmDetails,
   | 'id'
   | 'name'
@@ -43,4 +43,9 @@ type TPromoFilm = Pick<
   | 'isFavorite'
 >;
 
-export type { TFilmDetails, TFilmComment, TFilm, TPromoFilm };
+export type UserInfoResponse = {
+  name: string;
+  avatarUrl: string;
+  email: string;
+  token: string;
+};

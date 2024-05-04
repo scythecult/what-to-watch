@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, RootState } from './store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
-import { TFilm, TPromoFilm } from '../types';
+import { TFilm, TPromoFilm, UserInfoResponse } from '../types';
 import { ApiRoute } from '../const';
 
 export type ThunkApiConfig = {
@@ -30,5 +30,18 @@ export const loadPromoFilm = createAppAsyncThunk(
     );
 
     return promoFilm;
+  }
+);
+
+export const checkAuthStatus = createAppAsyncThunk(
+  `${StoreName.User}/checkAuthStatus`,
+  async (_arg, { extra: fetchData }) => {
+    const { data: userInfo } = await fetchData.get<UserInfoResponse>(
+      ApiRoute.UserInfo
+    );
+    // eslint-disable-next-line no-console
+    console.log(userInfo);
+
+    return userInfo;
   }
 );
