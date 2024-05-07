@@ -13,7 +13,7 @@ export type TFilmDetails = {
   director?: string;
   starring?: TStarring;
   runTime?: number;
-  genre?: string;
+  genre: string;
   released?: number;
   isFavorite?: boolean;
 };
@@ -48,6 +48,11 @@ export type UserInfoResponse = {
   avatarUrl: string;
   email: string;
   token: string;
+};
+
+export type UserInfoRequest = {
+  email: string;
+  password: string;
 };
 
 export type ErrorInfo = {
