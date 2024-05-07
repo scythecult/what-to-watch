@@ -7,7 +7,7 @@ export const userAuthStatusSelector = createSelector(
   ({ authorizationStatus }) => authorizationStatus
 );
 
-export const userEmailSelector = createSelector(
+export const userInfoSelector = createSelector(
   [(state: Pick<RootState, typeof StoreName.User>) => state[StoreName.User]],
-  ({ email }) => email
+  ({ name, email, avatarUrl }) => ({ name, email, avatarUrl })
 );

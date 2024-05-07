@@ -19,6 +19,8 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
     if (isEmailValid(userEmail) && isPasswordValid(userPassword)) {
       onSubmit({ email: userEmail, password: userPassword });
       navigate(AppRoute.Root);
+      setUserEmail('');
+      setUserPassword('');
     }
   };
 

@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
 import { TFilm, TPromoFilm, UserInfoRequest, UserInfoResponse } from '../types';
 import { ApiRoute } from '../const';
-import { setToken } from '../service/handle-token';
+import { dropToken, setToken } from '../service/handle-token';
 
 export type ThunkApiConfig = {
   dispatch: AppDispatch;
@@ -40,8 +40,6 @@ export const checkAuthStatus = createAppAsyncThunk(
     const { data: userInfo } = await fetchData.get<UserInfoResponse>(
       ApiRoute.UserInfo
     );
-    // eslint-disable-next-line no-console
-    console.log({ userInfo });
 
     return userInfo;
   }
@@ -59,5 +57,14 @@ export const login = createAppAsyncThunk(
     setToken(token);
 
     return userInfo;
+  }
+);
+
+export const logout = createAppAsyncThunk(
+  `${StoreName.User}/logout`,
+  async (_arg, { extra: fetchData }) => {
+    await fetchData.delete(ApiRoute.Logout);
+
+    dropToken();
   }
 );

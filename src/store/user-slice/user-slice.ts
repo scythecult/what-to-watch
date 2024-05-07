@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthStatus, AuthStatusValue } from '../../const';
 import { StoreName } from '../const';
-import { checkAuthStatus, login } from '../async-actions';
+import { checkAuthStatus, login, logout } from '../async-actions';
 
 export type UserState = {
   authorizationStatus: AuthStatusValue;
@@ -28,10 +28,13 @@ export const userSlice = createSlice({
       state.authorizationStatus = AuthStatus.Unknown;
     });
     builder.addCase(checkAuthStatus.fulfilled, (state, action) => {
-      const { email } = action.payload;
+      const { name, email, avatarUrl, token } = action.payload;
 
       state.authorizationStatus = AuthStatus.Auth;
+      state.name = name;
       state.email = email;
+      state.avatarUrl = avatarUrl;
+      state.token = token;
     });
     builder.addCase(checkAuthStatus.rejected, (state) => {
       state.authorizationStatus = AuthStatus.NoAuth;
@@ -44,6 +47,13 @@ export const userSlice = createSlice({
       state.email = email;
       state.avatarUrl = avatarUrl;
       state.token = token;
+    });
+    builder.addCase(logout.fulfilled, (state) => {
+      state.authorizationStatus = AuthStatus.NoAuth;
+      state.name = '';
+      state.email = '';
+      state.avatarUrl = '';
+      state.token = '';
     });
   },
 });

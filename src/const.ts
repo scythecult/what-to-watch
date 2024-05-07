@@ -8,6 +8,7 @@ export const ApiRoute = {
   Films: `${PROJECT_ALIAS}/films`,
   PromoFilm: `${PROJECT_ALIAS}/promo`,
   UserInfo: `${PROJECT_ALIAS}/login`,
+  Logout: `${PROJECT_ALIAS}/logout`,
 } as const;
 
 export type ApiRouteKey = keyof typeof ApiRoute;
