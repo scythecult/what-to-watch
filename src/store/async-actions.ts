@@ -2,8 +2,9 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, RootState } from './store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
-import { TFilm, TPromoFilm } from '../types';
+import { TFilm, TPromoFilm, UserInfoRequest, UserInfoResponse } from '../types';
 import { ApiRoute } from '../const';
+import { dropToken, setToken } from '../service/handle-token';
 
 export type ThunkApiConfig = {
   dispatch: AppDispatch;
@@ -30,5 +31,40 @@ export const loadPromoFilm = createAppAsyncThunk(
     );
 
     return promoFilm;
+  }
+);
+
+export const checkAuthStatus = createAppAsyncThunk(
+  `${StoreName.User}/checkAuthStatus`,
+  async (_arg, { extra: fetchData }) => {
+    const { data: userInfo } = await fetchData.get<UserInfoResponse>(
+      ApiRoute.UserInfo
+    );
+
+    return userInfo;
+  }
+);
+
+export const login = createAppAsyncThunk(
+  `${StoreName.User}/login`,
+  async ({ email, password }: UserInfoRequest, { extra: fetchData }) => {
+    const { data: userInfo } = await fetchData.post<UserInfoResponse>(
+      ApiRoute.UserInfo,
+      { email, password }
+    );
+    const { token } = userInfo;
+
+    setToken(token);
+
+    return userInfo;
+  }
+);
+
+export const logout = createAppAsyncThunk(
+  `${StoreName.User}/logout`,
+  async (_arg, { extra: fetchData }) => {
+    await fetchData.delete(ApiRoute.Logout);
+
+    dropToken();
   }
 );

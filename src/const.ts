@@ -2,10 +2,13 @@ export const PROJECT_ALIAS = 'wtw';
 export const BASE_API_URL = 'https://13.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
 export const MAX_RATING_STAR_COUNT = 10;
+export const USER_TOKEN_STORAGE_NAME = `${PROJECT_ALIAS}-user-token`;
 
 export const ApiRoute = {
   Films: `${PROJECT_ALIAS}/films`,
   PromoFilm: `${PROJECT_ALIAS}/promo`,
+  UserInfo: `${PROJECT_ALIAS}/login`,
+  Logout: `${PROJECT_ALIAS}/logout`,
 } as const;
 
 export type ApiRouteKey = keyof typeof ApiRoute;

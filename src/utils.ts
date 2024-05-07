@@ -18,3 +18,16 @@ export const generateRatingValues = (count: number) =>
 
 export const getFormattedPlayTime = (time: number) =>
   `${Math.floor(time / 60)} :  ${time % 60}`;
+
+export const isEmailValid = (email: string) => {
+  const EMAIL_REGEX =
+    /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+([a-z]{2,18})$/;
+
+  return EMAIL_REGEX.test(email);
+};
+
+export const isPasswordValid = (password: string) => {
+  const PASSWORD_REGEX = /[\D{1}\d{1}]/g;
+
+  return PASSWORD_REGEX.test(password) && password.length > 2;
+};

@@ -13,9 +13,10 @@ import { Catalog } from '../../components/catalog/catalog';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo/logo';
 import { UserNav } from '../../components/user-nav/user-nav';
+import { DEFAULT_FILTER } from '../../store/const';
 
 const MainPage = () => {
-  const { filter: genreFilter = '' } = useParams();
+  const { filter: genreFilter = DEFAULT_FILTER } = useParams();
   const dispatch = useAppDispatch();
   const films = useAppSelector(filmsSelector);
   const promoFilm = useAppSelector(promoFilmSelector);
