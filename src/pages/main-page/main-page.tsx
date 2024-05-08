@@ -22,7 +22,15 @@ const MainPage = () => {
   const promoFilm = useAppSelector(promoFilmSelector);
 
   useEffect(() => {
-    dispatch(setFilter(genreFilter));
+    let isMounted = true;
+
+    if (genreFilter && isMounted) {
+      dispatch(setFilter(genreFilter));
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [genreFilter, dispatch]);
 
   return (

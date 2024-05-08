@@ -18,3 +18,8 @@ export const promoFilmSelector = createSelector(
   [(state: Pick<RootState, typeof StoreName.Films>) => state[StoreName.Films]],
   ({ promoFilm }) => promoFilm
 );
+
+export const filmDetailsSelector = createSelector(
+  [(state: Pick<RootState, typeof StoreName.Films>) => state[StoreName.Films]],
+  ({ filmDetails }) => filmDetails
+);

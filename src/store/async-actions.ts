@@ -2,7 +2,13 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, RootState } from './store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
-import { TFilm, TPromoFilm, UserInfoRequest, UserInfoResponse } from '../types';
+import {
+  TFilm,
+  TFilmDetails,
+  TPromoFilm,
+  UserInfoRequest,
+  UserInfoResponse,
+} from '../types';
 import { ApiRoute } from '../const';
 import { dropToken, setToken } from '../service/handle-token';
 
@@ -31,6 +37,17 @@ export const loadPromoFilm = createAppAsyncThunk(
     );
 
     return promoFilm;
+  }
+);
+
+export const loadFilmDetails = createAppAsyncThunk(
+  `${StoreName.Films}/loadFilmDetails`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: filmDetails } = await fetchData.get<TFilmDetails>(
+      `${ApiRoute.Films}/${filmId}`
+    );
+
+    return filmDetails;
   }
 );
 
