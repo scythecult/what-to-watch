@@ -48,3 +48,6 @@ export const getRating = (rating: number) => {
 
   return ratingWord;
 };
+
+export const formatTime = (timeValue: number) =>
+  `${Math.floor(timeValue / 60)}h ${timeValue % 60}m`;
