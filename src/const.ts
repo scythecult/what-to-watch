@@ -57,3 +57,10 @@ export const ReviewFormBoundary = {
 export type ReviewFormBoundaryKey = keyof typeof ReviewFormBoundary;
 export type ReviewFormBoundaryValue =
   keyof (typeof ReviewFormBoundary)[ReviewFormBoundaryKey];
+
+export const RatingMap = new Map<number[], string>([
+  [[0, 3], 'Poor'],
+  [[4, 6], 'Good'],
+  [[7, 9], 'Very Good'],
+  [[9, 10], 'Perfect'],
+]);

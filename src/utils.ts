@@ -1,3 +1,4 @@
+import { RatingMap } from './const';
 import { TFilm } from './types';
 
 export const makeUcFirst = (value: string) =>
@@ -30,4 +31,20 @@ export const isPasswordValid = (password: string) => {
   const PASSWORD_REGEX = /[\D{1}\d{1}]/g;
 
   return PASSWORD_REGEX.test(password) && password.length > 2;
+};
+
+export const getRating = (rating: number) => {
+  let ratingWord = '';
+  const flooredRating = Math.floor(rating);
+
+  for (const [key, value] of RatingMap.entries()) {
+    if (
+      flooredRating >= Math.min(...key) &&
+      flooredRating <= Math.max(...key)
+    ) {
+      ratingWord = value;
+    }
+  }
+
+  return ratingWord;
 };
