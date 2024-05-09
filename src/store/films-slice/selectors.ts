@@ -3,11 +3,10 @@ import { RootState } from '../store';
 import { DEFAULT_FILTER, StoreName } from '../const';
 import { filterSelector } from '../filter-slice/selectors';
 
+export type FilmsSliceState = Pick<RootState, typeof StoreName.Films>;
+
 export const filmsSelector = createSelector(
-  [
-    (state: Pick<RootState, typeof StoreName.Films>) => state[StoreName.Films],
-    filterSelector,
-  ],
+  [(state: FilmsSliceState) => state[StoreName.Films], filterSelector],
   ({ films }, currentFilter) =>
     currentFilter === DEFAULT_FILTER || currentFilter === ''
       ? films
@@ -15,11 +14,16 @@ export const filmsSelector = createSelector(
 );
 
 export const promoFilmSelector = createSelector(
-  [(state: Pick<RootState, typeof StoreName.Films>) => state[StoreName.Films]],
+  [(state: FilmsSliceState) => state[StoreName.Films]],
   ({ promoFilm }) => promoFilm
 );
 
 export const filmDetailsSelector = createSelector(
-  [(state: Pick<RootState, typeof StoreName.Films>) => state[StoreName.Films]],
+  [(state: FilmsSliceState) => state[StoreName.Films]],
   ({ filmDetails }) => filmDetails
+);
+
+export const similarFilmsSelector = createSelector(
+  [(state: FilmsSliceState) => state[StoreName.Films]],
+  ({ similarFilms }) => similarFilms
 );

@@ -5,30 +5,30 @@ import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Logo } from '../../components/logo/logo';
 import { UserNav } from '../../components/user-nav/user-nav';
-import { TFilm } from '../../types';
 import { Helmet } from 'react-helmet-async';
 import { FilmList } from '../../components/film-list/film-list';
 import { FilmNav } from '../../components/film-nav/film-nav';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
-import { loadFilmDetails } from '../../store/async-actions';
-import { filmDetailsSelector } from '../../store/films-slice/selectors';
+import { loadFilmDetails, loadSimilarFilms } from '../../store/async-actions';
+import {
+  filmDetailsSelector,
+  similarFilmsSelector,
+} from '../../store/films-slice/selectors';
 import { Spinner } from '../../components/spinner/spinner';
 
-type TFilmPageProps = {
-  similiarFilms: TFilm[];
-};
-
-const FilmPage = ({ similiarFilms = [] }: TFilmPageProps) => {
+const FilmPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const filmDetails = useAppSelector(filmDetailsSelector);
+  const similiarFilms = useAppSelector(similarFilmsSelector);
 
   useEffect(() => {
     let isMounted = true;
 
     if (id && isMounted) {
       dispatch(loadFilmDetails(id));
+      dispatch(loadSimilarFilms(id));
     }
 
     return () => {

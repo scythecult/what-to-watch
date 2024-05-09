@@ -51,6 +51,17 @@ export const loadFilmDetails = createAppAsyncThunk(
   }
 );
 
+export const loadSimilarFilms = createAppAsyncThunk(
+  `${StoreName.Films}/loadSimilarFilms`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: similarFilms } = await fetchData.get<TFilm[]>(
+      `${ApiRoute.Films}/${filmId}/similar`
+    );
+
+    return similarFilms;
+  }
+);
+
 export const checkAuthStatus = createAppAsyncThunk(
   `${StoreName.User}/checkAuthStatus`,
   async (_arg, { extra: fetchData }) => {

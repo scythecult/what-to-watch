@@ -16,10 +16,9 @@ import { FilmReviews } from '../film-reviews/film-reviews';
 
 type TAppProps = {
   mockFilms: TFilm[];
-  mockSimiliarFilms: TFilm[];
 };
 
-const App = ({ mockFilms, mockSimiliarFilms }: TAppProps) => (
+const App = ({ mockFilms }: TAppProps) => (
   <HelmetProvider>
     <BrowserRouter>
       <Routes>
@@ -34,10 +33,7 @@ const App = ({ mockFilms, mockSimiliarFilms }: TAppProps) => (
           }
         />
         <Route path={`${AppRoute.VideoPlayer}/:id`} element={<PlayerPage />} />
-        <Route
-          path={`${AppRoute.Film}/:id`}
-          element={<FilmPage similiarFilms={mockSimiliarFilms} />}
-        >
+        <Route path={`${AppRoute.Film}/:id`} element={<FilmPage />}>
           <Route path={AppRoute.FilmOverview} element={<FilmOverview />} />
           <Route path={AppRoute.FilmDetails} element={<FilmDetails />} />
           <Route path={AppRoute.FilmReviews} element={<FilmReviews />} />
