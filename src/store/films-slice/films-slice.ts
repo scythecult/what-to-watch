@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TFilm, TFilmDetails, TPromoFilm } from '../../types';
+import { TFilm, TFilmComment, TFilmDetails, TPromoFilm } from '../../types';
 import { StoreName } from '../const';
 import {
+  loadFilmComments,
   loadFilmDetails,
   loadFilms,
   loadPromoFilm,
@@ -13,6 +14,7 @@ export type FilmsState = {
   promoFilm: TPromoFilm | null;
   filmDetails: TFilmDetails | null;
   similarFilms: TFilm[];
+  filmComments: TFilmComment[];
 };
 
 const initialState: FilmsState = {
@@ -20,6 +22,7 @@ const initialState: FilmsState = {
   promoFilm: null,
   filmDetails: null,
   similarFilms: [],
+  filmComments: [],
 };
 
 export const filmsSlice = createSlice({
@@ -41,6 +44,9 @@ export const filmsSlice = createSlice({
     });
     builder.addCase(loadSimilarFilms.fulfilled, (state, action) => {
       state.similarFilms = action.payload;
+    });
+    builder.addCase(loadFilmComments.fulfilled, (state, action) => {
+      state.filmComments = action.payload;
     });
   },
 });

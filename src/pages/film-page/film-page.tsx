@@ -10,7 +10,11 @@ import { FilmList } from '../../components/film-list/film-list';
 import { FilmNav } from '../../components/film-nav/film-nav';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
-import { loadFilmDetails, loadSimilarFilms } from '../../store/async-actions';
+import {
+  loadFilmComments,
+  loadFilmDetails,
+  loadSimilarFilms,
+} from '../../store/async-actions';
 import {
   filmDetailsSelector,
   similarFilmsSelector,
@@ -29,6 +33,7 @@ const FilmPage = () => {
     if (id && isMounted) {
       dispatch(loadFilmDetails(id));
       dispatch(loadSimilarFilms(id));
+      dispatch(loadFilmComments(id));
     }
 
     return () => {

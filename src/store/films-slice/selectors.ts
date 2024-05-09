@@ -27,3 +27,8 @@ export const similarFilmsSelector = createSelector(
   [(state: FilmsSliceState) => state[StoreName.Films]],
   ({ similarFilms }) => similarFilms
 );
+
+export const filmCommentsSelector = createSelector(
+  [(state: FilmsSliceState) => state[StoreName.Films]],
+  ({ filmComments }) => filmComments
+);

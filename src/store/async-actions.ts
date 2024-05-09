@@ -4,6 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
 import {
   TFilm,
+  TFilmComment,
   TFilmDetails,
   TPromoFilm,
   UserInfoRequest,
@@ -59,6 +60,17 @@ export const loadSimilarFilms = createAppAsyncThunk(
     );
 
     return similarFilms;
+  }
+);
+
+export const loadFilmComments = createAppAsyncThunk(
+  `${StoreName.Films}/loadFilmComments`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: filmComments } = await fetchData.get<TFilmComment[]>(
+      `${ApiRoute.Comments}/${filmId}`
+    );
+
+    return filmComments;
   }
 );
 

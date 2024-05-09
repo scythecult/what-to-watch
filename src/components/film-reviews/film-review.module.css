@@ -1,0 +1,5 @@
+.filmReviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 380px));
+  gap: 10px;
+}
