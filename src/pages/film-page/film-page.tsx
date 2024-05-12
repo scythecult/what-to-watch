@@ -16,16 +16,22 @@ import {
   loadSimilarFilms,
 } from '../../store/async-actions';
 import {
+  filmDetailsLoadingStateSelector,
   filmDetailsSelector,
   similarFilmsSelector,
 } from '../../store/films-slice/selectors';
 import { Spinner } from '../../components/spinner/spinner';
+import { LoadingState } from '../../const';
+import { NotFoundPage } from '../not-found-page/not-found-page';
 
 const FilmPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const filmDetails = useAppSelector(filmDetailsSelector);
   const similiarFilms = useAppSelector(similarFilmsSelector);
+  const filmDetailsLoadingState = useAppSelector(
+    filmDetailsLoadingStateSelector
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -40,6 +46,10 @@ const FilmPage = () => {
       isMounted = false;
     };
   }, [id, dispatch]);
+
+  if (filmDetailsLoadingState === LoadingState.Error) {
+    return <NotFoundPage />;
+  }
 
   if (!filmDetails) {
     return <Spinner />;

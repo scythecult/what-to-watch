@@ -18,6 +18,7 @@ export type FilmsState = {
   similarFilms: TFilm[];
   filmComments: TFilmComment[];
   filmCreateCommentLoadingState: LoadingStateValue;
+  filmDetailsLoadingState: LoadingStateValue;
 };
 
 const initialState: FilmsState = {
@@ -27,6 +28,7 @@ const initialState: FilmsState = {
   similarFilms: [],
   filmComments: [],
   filmCreateCommentLoadingState: LoadingState.Idle,
+  filmDetailsLoadingState: LoadingState.Idle,
 };
 
 export const filmsSlice = createSlice({
@@ -42,9 +44,15 @@ export const filmsSlice = createSlice({
     });
     builder.addCase(loadFilmDetails.pending, (state) => {
       state.filmDetails = null;
+      state.filmDetailsLoadingState = LoadingState.Pending;
     });
     builder.addCase(loadFilmDetails.fulfilled, (state, action) => {
       state.filmDetails = action.payload;
+      state.filmDetailsLoadingState = LoadingState.Fulfilled;
+    });
+    builder.addCase(loadFilmDetails.rejected, (state) => {
+      state.filmDetails = null;
+      state.filmDetailsLoadingState = LoadingState.Error;
     });
     builder.addCase(loadSimilarFilms.fulfilled, (state, action) => {
       state.similarFilms = action.payload;

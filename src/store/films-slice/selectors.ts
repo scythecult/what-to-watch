@@ -37,3 +37,8 @@ export const filmCreateCommentLoadingStateSelector = createSelector(
   [(state: FilmsSliceState) => state[StoreName.Films]],
   ({ filmCreateCommentLoadingState }) => filmCreateCommentLoadingState
 );
+
+export const filmDetailsLoadingStateSelector = createSelector(
+  [(state: FilmsSliceState) => state[StoreName.Films]],
+  ({ filmDetailsLoadingState }) => filmDetailsLoadingState
+);
