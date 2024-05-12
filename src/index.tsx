@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
 import { mockFilms } from './mocks/films';
-import { mockDetails } from './mocks/details';
-import { mockSimiliarFilms } from './mocks/similiar-films';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import {
@@ -23,11 +21,7 @@ store.dispatch(checkAuthStatus());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        mockFilms={mockFilms}
-        mockFilmDetails={mockDetails}
-        mockSimiliarFilms={mockSimiliarFilms}
-      />
+      <App mockFilms={mockFilms} />
     </Provider>
   </React.StrictMode>
 );

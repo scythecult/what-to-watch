@@ -5,11 +5,34 @@ import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { filmDetailsSelector } from '../../store/films-slice/selectors';
+import { Spinner } from '../../components/spinner/spinner';
+import { useEffect } from 'react';
+import { loadFilmDetails } from '../../store/async-actions';
 
 const ReviewPage = () => {
-  const { id } = useParams();
-  // eslint-disable-next-line no-console
-  console.log(id);
+  const { id = '' } = useParams();
+  const dispatch = useAppDispatch();
+  const filmDetails = useAppSelector(filmDetailsSelector);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (id && isMounted) {
+      dispatch(loadFilmDetails(id));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, dispatch]);
+
+  if (!filmDetails) {
+    return <Spinner />;
+  }
+
+  const { backgroundImage, posterImage, name } = filmDetails;
 
   return (
     <section className="film-card film-card--full">
@@ -18,25 +41,17 @@ const ReviewPage = () => {
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={backgroundImage} alt={name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <Header>
           <Logo />
-          <Breadcrumbs filmId={id} />
+          <Breadcrumbs filmId={id} filmTitle={name} />
           <UserNav />
         </Header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
-            width={218}
-            height={327}
-          />
+          <img src={posterImage} alt={name} width={218} height={327} />
         </div>
       </div>
       <div className="add-review">

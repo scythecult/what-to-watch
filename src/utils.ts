@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+import { RatingMap } from './const';
 import { TFilm } from './types';
 
 export const makeUcFirst = (value: string) =>
@@ -31,3 +33,25 @@ export const isPasswordValid = (password: string) => {
 
   return PASSWORD_REGEX.test(password) && password.length > 2;
 };
+
+export const getRating = (rating: number) => {
+  let ratingWord = '';
+  const flooredRating = Math.floor(rating);
+
+  for (const [key, value] of RatingMap.entries()) {
+    if (
+      flooredRating >= Math.min(...key) &&
+      flooredRating <= Math.max(...key)
+    ) {
+      ratingWord = value;
+    }
+  }
+
+  return ratingWord;
+};
+
+export const formatTime = (timeValue: number) =>
+  `${Math.floor(timeValue / 60)}h ${timeValue % 60}m`;
+
+export const formatDate = (dateValue: string) =>
+  dayjs(dateValue).format('MMMM D, YYYY');

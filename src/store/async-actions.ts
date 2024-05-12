@@ -2,9 +2,17 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, RootState } from './store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreName } from './const';
-import { TFilm, TPromoFilm, UserInfoRequest, UserInfoResponse } from '../types';
+import {
+  TFilm,
+  TFilmComment,
+  TFilmDetails,
+  TPromoFilm,
+  UserInfoRequest,
+  UserInfoResponse,
+} from '../types';
 import { ApiRoute } from '../const';
 import { dropToken, setToken } from '../service/handle-token';
+import { TUserReviewData } from '../components/review-form/review-form';
 
 export type ThunkApiConfig = {
   dispatch: AppDispatch;
@@ -31,6 +39,52 @@ export const loadPromoFilm = createAppAsyncThunk(
     );
 
     return promoFilm;
+  }
+);
+
+export const loadFilmDetails = createAppAsyncThunk(
+  `${StoreName.Films}/loadFilmDetails`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: filmDetails } = await fetchData.get<TFilmDetails>(
+      `${ApiRoute.Films}/${filmId}`
+    );
+
+    return filmDetails;
+  }
+);
+
+export const loadSimilarFilms = createAppAsyncThunk(
+  `${StoreName.Films}/loadSimilarFilms`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: similarFilms } = await fetchData.get<TFilm[]>(
+      `${ApiRoute.Films}/${filmId}/similar`
+    );
+
+    return similarFilms;
+  }
+);
+
+export const loadFilmComments = createAppAsyncThunk(
+  `${StoreName.Films}/loadFilmComments`,
+  async (filmId: string, { extra: fetchData }) => {
+    const { data: filmComments } = await fetchData.get<TFilmComment[]>(
+      `${ApiRoute.Comments}/${filmId}`
+    );
+
+    return filmComments;
+  }
+);
+
+export const createFilmComment = createAppAsyncThunk(
+  `${StoreName.Films}/createFilmComment`,
+  async (reviewData: TUserReviewData, { extra: fetchData }) => {
+    const { filmId, rating, comment } = reviewData;
+    const { data: newComment } = await fetchData.post<TFilmComment>(
+      `${ApiRoute.Comments}/${filmId}`,
+      { comment, rating }
+    );
+
+    return newComment;
   }
 );
 

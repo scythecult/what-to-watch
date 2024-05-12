@@ -9,6 +9,7 @@ export const ApiRoute = {
   PromoFilm: `${PROJECT_ALIAS}/promo`,
   UserInfo: `${PROJECT_ALIAS}/login`,
   Logout: `${PROJECT_ALIAS}/logout`,
+  Comments: `${PROJECT_ALIAS}/comments`,
 } as const;
 
 export type ApiRouteKey = keyof typeof ApiRoute;
@@ -57,3 +58,20 @@ export const ReviewFormBoundary = {
 export type ReviewFormBoundaryKey = keyof typeof ReviewFormBoundary;
 export type ReviewFormBoundaryValue =
   keyof (typeof ReviewFormBoundary)[ReviewFormBoundaryKey];
+
+export const RatingMap = new Map<number[], string>([
+  [[0, 3], 'Poor'],
+  [[4, 6], 'Good'],
+  [[7, 9], 'Very Good'],
+  [[9, 10], 'Perfect'],
+]);
+
+export const LoadingState = {
+  Idle: 'idle',
+  Pending: 'pending',
+  Fulfilled: 'fulfilled',
+  Error: 'error',
+};
+
+export type LoadingStateKey = keyof typeof LoadingState;
+export type LoadingStateValue = (typeof LoadingState)[LoadingStateKey];

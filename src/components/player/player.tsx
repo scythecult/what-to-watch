@@ -68,7 +68,9 @@ const Player = ({ film }: TPlayerProps) => {
       }, 1000);
     }
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+    };
   });
 
   return (

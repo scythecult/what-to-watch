@@ -3,7 +3,7 @@ import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
 import { FilmPage } from '../../pages/film-page/film-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { MainPage } from '../../pages/main-page/main-page';
-import { TFilm, TFilmDetails } from '../../types';
+import { TFilm } from '../../types';
 import { PlayerPage } from '../../pages/player-page/player-page';
 import { ReviewPage } from '../../pages/review-page/review-page';
 import { AppRoute } from '../../const';
@@ -16,11 +16,9 @@ import { FilmReviews } from '../film-reviews/film-reviews';
 
 type TAppProps = {
   mockFilms: TFilm[];
-  mockFilmDetails: TFilmDetails;
-  mockSimiliarFilms: TFilm[];
 };
 
-const App = ({ mockFilms, mockFilmDetails, mockSimiliarFilms }: TAppProps) => (
+const App = ({ mockFilms }: TAppProps) => (
   <HelmetProvider>
     <BrowserRouter>
       <Routes>
@@ -35,15 +33,7 @@ const App = ({ mockFilms, mockFilmDetails, mockSimiliarFilms }: TAppProps) => (
           }
         />
         <Route path={`${AppRoute.VideoPlayer}/:id`} element={<PlayerPage />} />
-        <Route
-          path={`${AppRoute.Film}/:id`}
-          element={
-            <FilmPage
-              filmDetails={mockFilmDetails}
-              similiarFilms={mockSimiliarFilms}
-            />
-          }
-        >
+        <Route path={`${AppRoute.Film}/:id`} element={<FilmPage />}>
           <Route path={AppRoute.FilmOverview} element={<FilmOverview />} />
           <Route path={AppRoute.FilmDetails} element={<FilmDetails />} />
           <Route path={AppRoute.FilmReviews} element={<FilmReviews />} />
