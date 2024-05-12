@@ -12,6 +12,7 @@ import {
 } from '../types';
 import { ApiRoute } from '../const';
 import { dropToken, setToken } from '../service/handle-token';
+import { TUserReviewData } from '../components/review-form/review-form';
 
 export type ThunkApiConfig = {
   dispatch: AppDispatch;
@@ -71,6 +72,19 @@ export const loadFilmComments = createAppAsyncThunk(
     );
 
     return filmComments;
+  }
+);
+
+export const createFilmComment = createAppAsyncThunk(
+  `${StoreName.Films}/createFilmComment`,
+  async (reviewData: TUserReviewData, { extra: fetchData }) => {
+    const { filmId, rating, comment } = reviewData;
+    const { data: newComment } = await fetchData.post<TFilmComment>(
+      `${ApiRoute.Comments}/${filmId}`,
+      { comment, rating }
+    );
+
+    return newComment;
   }
 );
 

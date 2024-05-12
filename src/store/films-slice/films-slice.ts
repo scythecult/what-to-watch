@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TFilm, TFilmComment, TFilmDetails, TPromoFilm } from '../../types';
 import { StoreName } from '../const';
 import {
+  createFilmComment,
   loadFilmComments,
   loadFilmDetails,
   loadFilms,
   loadPromoFilm,
   loadSimilarFilms,
 } from '../async-actions';
+import { LoadingState, LoadingStateValue } from '../../const';
 
 export type FilmsState = {
   films: TFilm[];
@@ -15,6 +17,7 @@ export type FilmsState = {
   filmDetails: TFilmDetails | null;
   similarFilms: TFilm[];
   filmComments: TFilmComment[];
+  filmCreateCommentLoadingState: LoadingStateValue;
 };
 
 const initialState: FilmsState = {
@@ -23,6 +26,7 @@ const initialState: FilmsState = {
   filmDetails: null,
   similarFilms: [],
   filmComments: [],
+  filmCreateCommentLoadingState: LoadingState.Idle,
 };
 
 export const filmsSlice = createSlice({
@@ -47,6 +51,13 @@ export const filmsSlice = createSlice({
     });
     builder.addCase(loadFilmComments.fulfilled, (state, action) => {
       state.filmComments = action.payload;
+    });
+    builder.addCase(createFilmComment.pending, (state) => {
+      state.filmCreateCommentLoadingState = LoadingState.Pending;
+    });
+    builder.addCase(createFilmComment.fulfilled, (state, action) => {
+      state.filmComments.push(action.payload);
+      state.filmCreateCommentLoadingState = LoadingState.Fulfilled;
     });
   },
 });

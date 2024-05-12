@@ -5,13 +5,28 @@ import { Logo } from '../../components/logo/logo';
 import { ReviewForm } from '../../components/review-form/review-form';
 import { UserNav } from '../../components/user-nav/user-nav';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { filmDetailsSelector } from '../../store/films-slice/selectors';
 import { Spinner } from '../../components/spinner/spinner';
+import { useEffect } from 'react';
+import { loadFilmDetails } from '../../store/async-actions';
 
 const ReviewPage = () => {
-  const { id } = useParams();
+  const { id = '' } = useParams();
+  const dispatch = useAppDispatch();
   const filmDetails = useAppSelector(filmDetailsSelector);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (id && isMounted) {
+      dispatch(loadFilmDetails(id));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, dispatch]);
 
   if (!filmDetails) {
     return <Spinner />;

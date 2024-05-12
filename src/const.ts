@@ -65,3 +65,13 @@ export const RatingMap = new Map<number[], string>([
   [[7, 9], 'Very Good'],
   [[9, 10], 'Perfect'],
 ]);
+
+export const LoadingState = {
+  Idle: 'idle',
+  Pending: 'pending',
+  Fulfilled: 'fulfilled',
+  Error: 'error',
+};
+
+export type LoadingStateKey = keyof typeof LoadingState;
+export type LoadingStateValue = (typeof LoadingState)[LoadingStateKey];

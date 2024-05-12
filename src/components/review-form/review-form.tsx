@@ -1,50 +1,54 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './review-form.module.css';
 import { StarRating } from '../star-rating/star-rating';
-import { ReviewFormBoundary } from '../../const';
+import { LoadingState, ReviewFormBoundary } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { createFilmComment } from '../../store/async-actions';
+import { filmCreateCommentLoadingStateSelector } from '../../store/films-slice/selectors';
+import { Spinner } from '../spinner/spinner';
 
 type TReviewForm = { filmId: string | undefined };
-type TUserReviewData = {
+
+export type TUserReviewData = {
   filmId: string;
   rating: number;
-  reviewText: string;
+  comment: string;
 };
 
 const ReviewForm = ({ filmId = '' }: TReviewForm) => {
-  const [reviewData, setReviewData] = useState<TUserReviewData>({
-    filmId,
-    rating: 0,
-    reviewText: '',
-  });
+  const dispatch = useAppDispatch();
+  const commentCreateLoadingState = useAppSelector(
+    filmCreateCommentLoadingStateSelector
+  );
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
-  const { reviewText, rating } = reviewData;
   const isMinCharsLenghtInRange =
-    reviewText.length > 0 && reviewText.length <= ReviewFormBoundary.MinLength;
+    comment.length > 0 && comment.length <= ReviewFormBoundary.MinLength;
   const isFormValid =
-    reviewText.length > ReviewFormBoundary.MinLength &&
-    reviewText.length < ReviewFormBoundary.MaxLength &&
+    comment.length > ReviewFormBoundary.MinLength &&
+    comment.length < ReviewFormBoundary.MaxLength &&
     rating > 0;
 
   const handleRatingClick = (ratingValue: number) => {
-    setReviewData((prevReviewData) => ({
-      ...prevReviewData,
-      rating: ratingValue,
-    }));
+    setRating(ratingValue);
   };
 
-  const handleReviewTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewData((prevReviewData) => ({
-      ...prevReviewData,
-      reviewText: evt.target.value,
-    }));
+  const handlecommentChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(evt.target.value);
   };
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log(reviewData);
+    dispatch(createFilmComment({ filmId, rating, comment }));
+    setRating(0);
+    setComment('');
   };
+
+  if (commentCreateLoadingState === LoadingState.Pending) {
+    return <Spinner />;
+  }
 
   return (
     <form className="add-review__form" action="#" onSubmit={handleFormSubmit}>
@@ -56,8 +60,8 @@ const ReviewForm = ({ filmId = '' }: TReviewForm) => {
           name="review-text"
           id="review-text"
           placeholder="Review text"
-          value={reviewText}
-          onChange={handleReviewTextChange}
+          value={comment}
+          onChange={handlecommentChange}
         />
         <div className="add-review__submit">
           <button
@@ -74,7 +78,7 @@ const ReviewForm = ({ filmId = '' }: TReviewForm) => {
         film with at least <b>50 characters</b>.
         {isMinCharsLenghtInRange && (
           <b>
-            Сharacters left: {ReviewFormBoundary.MinLength - reviewText.length}
+            Сharacters left: {ReviewFormBoundary.MinLength - comment.length}
           </b>
         )}
       </p>
