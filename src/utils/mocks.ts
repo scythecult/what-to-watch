@@ -5,6 +5,7 @@ import {
   TFilmComment,
   TFilmDetails,
   TPromoFilm,
+  UserInfoResponse,
 } from '../types';
 
 // id(pin):"47bba0c8-754a-4a4a-89d0-b6840199d02a"
@@ -71,4 +72,11 @@ export const createFilmComments = (): TFilmComment[] =>
 export const createErrorInfo = (): ErrorInfo => ({
   serverMessage: faker.lorem.paragraph(),
   responseMessage: faker.lorem.paragraph(),
+});
+
+export const createUserInfo = (): UserInfoResponse => ({
+  name: faker.internet.userName(),
+  avatarUrl: faker.system.directoryPath(),
+  email: faker.internet.email(),
+  token: crypto.randomUUID(),
 });
