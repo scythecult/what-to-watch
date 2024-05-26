@@ -1,5 +1,11 @@
 import { faker } from '@faker-js/faker';
-import { TFilm, TFilmComment, TFilmDetails, TPromoFilm } from '../types';
+import {
+  ErrorInfo,
+  TFilm,
+  TFilmComment,
+  TFilmDetails,
+  TPromoFilm,
+} from '../types';
 
 // id(pin):"47bba0c8-754a-4a4a-89d0-b6840199d02a"
 // name(pin):"Fantastic Beasts: The Crimes of Grindelwald"
@@ -61,3 +67,8 @@ export const createFilmComments = (): TFilmComment[] =>
     comment: faker.lorem.paragraphs(),
     rating: faker.number.float({ min: 1, max: 10 }),
   }));
+
+export const createErrorInfo = (): ErrorInfo => ({
+  serverMessage: faker.lorem.paragraph(),
+  responseMessage: faker.lorem.paragraph(),
+});
