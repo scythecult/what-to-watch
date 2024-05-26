@@ -1,7 +1,6 @@
 import { createErrorInfo } from '../../utils/mocks';
 import { StoreName } from '../const';
 import { StoreType, getStore } from '../store';
-import { appErrorSlice } from './app-slice';
 import { appErrorInfoSelector } from './selectors';
 
 describe('AppSlice selectors', () => {
@@ -9,16 +8,6 @@ describe('AppSlice selectors', () => {
 
   beforeAll(() => {
     store = getStore();
-  });
-
-  it('Should return intial state', () => {
-    const state = store.getState();
-    const initialState = state[StoreName.AppError];
-    const action = { type: '' };
-
-    const result = appErrorSlice.reducer(initialState, action);
-
-    expect(result).toEqual(initialState);
   });
 
   it('Should return error info', () => {

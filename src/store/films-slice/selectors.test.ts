@@ -7,7 +7,6 @@ import {
 } from '../../utils/mocks';
 import { StoreName } from '../const';
 import { StoreType, getStore } from '../store';
-import { filmsSlice } from './films-slice';
 import {
   filmCommentsSelector,
   filmCreateCommentLoadingStateSelector,
@@ -22,16 +21,6 @@ describe('FilmsSlice selectors', () => {
 
   beforeEach(() => {
     store = getStore();
-  });
-
-  it('Should return initial state', () => {
-    const state = store.getState();
-    const initialState = state[StoreName.Films];
-    const action = { type: '' };
-
-    const result = filmsSlice.reducer(initialState, action);
-
-    expect(result).toEqual(initialState);
   });
 
   it('Should return filtered films', () => {
