@@ -2,12 +2,14 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { StoreName } from '../const';
 
+export type UserAuthState = Pick<RootState, typeof StoreName.User>;
+
 export const userAuthStatusSelector = createSelector(
-  [(state: Pick<RootState, typeof StoreName.User>) => state[StoreName.User]],
+  [(state: UserAuthState) => state[StoreName.User]],
   ({ authorizationStatus }) => authorizationStatus
 );
 
 export const userInfoSelector = createSelector(
-  [(state: Pick<RootState, typeof StoreName.User>) => state[StoreName.User]],
+  [(state: UserAuthState) => state[StoreName.User]],
   ({ name, email, avatarUrl }) => ({ name, email, avatarUrl })
 );
